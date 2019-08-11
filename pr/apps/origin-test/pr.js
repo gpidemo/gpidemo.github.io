@@ -14,7 +14,7 @@ function buildPaymentRequest() {
             'https://gpidemo.github.io',
         data: {
 			supportedNetworks: ['GPI'],
-			UETR: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2'
+			UETR: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
 			creditorAccount: 'CREDITACC1234',
 			creditorName: 'Merchant',
 			creditorBankCode: 'SWHQBEBB',
@@ -22,7 +22,7 @@ function buildPaymentRequest() {
 			debtorAccount: 'DEBITACC1234',
 			debtorLEI: '549300VBNQICP5TDO865',
 			purpose: 'Webshop',
-        
+		}
     }];
 
 
@@ -54,9 +54,9 @@ function buildPaymentRequest() {
     		amount: {
       		currency: 'EUR',
       		value: 54.45,
-    	},
-  	},
-  	displayItems: allDisplayItems,
+    		},
+  		},
+  		displayItems: allDisplayItems,
 	};
 
 
@@ -64,9 +64,9 @@ function buildPaymentRequest() {
 
     try {
         request = new PaymentRequest(supportedInstruments, details);
-        if (request.canMakePayment) {
+          if (request.canMakePayment) {
             request.canMakePayment().then(function(result) {
-        info(result ? 'Can make payment' : 'Cannot make payment');
+               info(result ? 'Can make payment' : 'Cannot make payment');
             }).catch(function(err) {
                 error(err);
             });
@@ -78,7 +78,7 @@ function buildPaymentRequest() {
         info('Payment method change event: ' + JSON.stringify({'methodName': evt.methodName, 'methodDetails': evt.methodDetails}, undefined, 2));
       });
     }
-    } catch (e) {
+       } catch (e) {
         error('Developer mistake: \'' + e + '\'');
     }
 
