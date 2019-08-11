@@ -10,7 +10,13 @@ function buildPaymentRequest() {
     }
 
     let supportedInstruments = [{
-        supportedMethods: 
+    supportedMethods: 'basic-card',
+    data: {
+      supportedNetworks: networks, 
+      supportedTypes: ['debit', 'credit', 'prepaid']
+    }
+	  }, 
+      {  supportedMethods: 
             'https://gpidemo.github.io',
         data: {
 			supportedNetworks: ['GPI'],
@@ -94,23 +100,9 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
     }
 
     try {
-        request.show()
-            .then(function(instrumentResponse) {
-                window.setTimeout(function() {
-                    instrumentResponse.complete('success')
-                        .then(function() {
-                            done('This is a demo website. No payment will be processed.', instrumentResponse);
-                        })
-                        .catch(function(err) {
-                            error(err);
-                            request = buildPaymentRequest();
-                        });
-                }, 2000);
-            })
-            .catch(function(err) {
-                error(err);
-                request = buildPaymentRequest();
-            });
+	  request.show()
+    	.then(instrumentResponse => sendPaymentToServer(instrumentResponse))
+    	.catch(err => document.getElementById('log').innerText = err);
     } catch (e) {
         error('Developer mistake: \'' + e + '\'');
         request = buildPaymentRequest();
@@ -118,3 +110,29 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
 }
 
 
+
+/**
+ * Simulates processing the payment data on the server.
+ */
+function sendPaymentToServer(instrumentResponse) {
+  // There's no server-side component of these samples. No transactions are
+  // processed and no money exchanged hands. Instantaneous transactions are not
+  // realistic. Add a 2 second delay to make it seem more real.
+  
+  window.setTimeout(function () {
+    instrumentResponse.complete('success')
+        .then(() => document.getElementById('log').innerHTML = resultToTable(instrumentResponse))
+        .catch(err => document.getElementById('log').innerText = err);
+  }, 2000);
+}
+
+/**
+ * Converts the payment instrument into a JSON string.
+ */
+function resultToTable(result) {
+  return '<table class="table table-striped">' +
+    '<tr><td>Method name</td><td>' + result.methodName + '</td></tr>' +
+    '<tr><td>Cardholder name</td><td>' + result.details.UETR + '</td></tr>' +
+    '<tr><td>Cardholder name</td><td>' + result.details.status + '</td></tr>' +
+    '</table>';
+}
