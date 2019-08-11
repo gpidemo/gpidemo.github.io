@@ -14,7 +14,7 @@ function buildPaymentRequest() {
     data: {
       supportedNetworks: networks, 
       supportedTypes: ['debit', 'credit', 'prepaid']
-    }
+    },
 	  }, 
       {  supportedMethods: 
             'https://gpidemo.github.io',
@@ -28,7 +28,7 @@ function buildPaymentRequest() {
 			debtorAccount: 'DEBITACC1234',
 			debtorLEI: '549300VBNQICP5TDO865',
 			purpose: 'Webshop',
-		}
+		},
     }];
 
 
@@ -78,12 +78,6 @@ function buildPaymentRequest() {
             });
         }
 
-    if (request.onpaymentmethodchange !== undefined) {
-      info('Will print out payment method change event details here.');
-      request.addEventListener('paymentmethodchange', (evt) => {
-        info('Payment method change event: ' + JSON.stringify({'methodName': evt.methodName, 'methodDetails': evt.methodDetails}, undefined, 2));
-      });
-    }
        } catch (e) {
         error('Developer mistake: \'' + e + '\'');
     }
@@ -108,7 +102,6 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         request = buildPaymentRequest();
     }
 }
-
 
 
 /**
