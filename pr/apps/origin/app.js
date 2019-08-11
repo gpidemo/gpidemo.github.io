@@ -5,8 +5,9 @@ self.addEventListener('canmnakepayment', (evt) => {
 self.addEventListener('paymentrequest', (evt) => {
     evt.respondWith({
         methodName: 'https://gpidemo.github.io',
-        details: {
+        details: {        	
             uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
+            status: 'ACCP'
         },
     });
 });
