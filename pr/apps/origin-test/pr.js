@@ -6,6 +6,14 @@ function buildPaymentRequest() {
     let supportedInstruments = [{
         supportedMethods: 
             'https://gpidemo.github.io',
+    data: {
+			supportedNetworks: ['GPI'],
+			UETR: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2'
+			creditorAccount: 'CREDITACC1234',
+			creditorName: 'Merchant',
+			creditorBankCode: 'SWHQBEBB',
+			debtorName: 'Customer A',
+			debtorAccount: 'DEBITACC1234',
         
     }];
 
