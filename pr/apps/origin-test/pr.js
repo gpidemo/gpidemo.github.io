@@ -11,7 +11,7 @@ function buildPaymentRequest() {
 
     let supportedInstruments = [{
     	supportedMethods: 'https://bobpay.xyz/pay'
-  },
+    }, {
         supportedMethods: 'https://gpidemo.github.io',
         data: {
 			supportedNetworks: ['GPI'],
