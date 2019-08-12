@@ -10,6 +10,8 @@ function buildPaymentRequest() {
     }
 
     let supportedInstruments = [{
+        supportedMethods: 'basic-card',
+	}, {
         supportedMethods: 
         	'https://gpidemo.github.io',
         data: {
