@@ -10,21 +10,18 @@ function buildPaymentRequest() {
     }
 
     let supportedInstruments = [{
-        supportedMethods: 'basic-card',
-	}, {
-        supportedMethods: 
-        	'https://gpidemo.github.io',
+        supportedMethods: window.location.origin,
         data: {
-			supportedNetworks: ['GPI'],
-			UETR: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
-			creditorAccount: 'CREDITACC1234',
-			creditorName: 'Merchant',
-			creditorBankCode: 'SWHQBEBB',
-			debtorName: 'Customer A',
-			debtorAccount: 'DEBITACC1234',
-			debtorLEI: '549300VBNQICP5TDO865',
-			purpose: 'Webshop',
-		}
+          supportedNetworks: ['GPI'],
+          UETR: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
+          creditorAccount: 'CREDITACC1234',
+          creditorName: 'Merchant',
+          creditorBankCode: 'SWHQBEBB',
+          debtorName: 'Customer A',
+          debtorAccount: 'DEBITACC1234',
+          debtorLEI: '549300VBNQICP5TDO865',
+          purpose: 'Webshop',
+        }
     }];
 
 
