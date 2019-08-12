@@ -10,21 +10,18 @@ function buildPaymentRequest() {
     }
 
     let supportedInstruments = [{
-        supportedMethods: 'basic-card',
-	}, {
-        supportedMethods: 
-        	'https://gpidemo.github.io',
+        supportedMethods: window.location.origin,
         data: {
-			supportedNetworks: ['GPI'],
-			UETR: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
-			creditorAccount: 'CREDITACC1234',
-			creditorName: 'Merchant',
-			creditorBankCode: 'SWHQBEBB',
-			debtorName: 'Customer A',
-			debtorAccount: 'DEBITACC1234',
-			debtorLEI: '549300VBNQICP5TDO865',
-			purpose: 'Webshop',
-		}
+          supportedNetworks: ['GPI'],
+          UETR: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
+          creditorAccount: 'CREDITACC1234',
+          creditorName: 'Merchant',
+          creditorBankCode: 'SWHQBEBB',
+          debtorName: 'Customer A',
+          debtorAccount: 'DEBITACC1234',
+          debtorLEI: '549300VBNQICP5TDO865',
+          purpose: 'Webshop',
+        }
     }];
 
 
@@ -66,22 +63,28 @@ function buildPaymentRequest() {
 
     try {
         request = new PaymentRequest(supportedInstruments, details);
-          if (request.canMakePayment) {
-            request.canMakePayment().then(function(result) {
-               info(result ? 'Can make payment' : 'Cannot make payment');
-            }).catch(function(err) {
-                error(err);
-            });
+        if (request.canMakePayment) {
+          request.canMakePayment().then(function(result) {
+              info(result ? 'Can make payment' : 'Cannot make payment');
+          }).catch(function(err) {
+              error(err);
+          });
+        }
+        if (request.hasEnrolledInstrument) {
+          request.hasEnrolledInstrument().then(function(result) {
+              info(result ? 'Has enrolled instrument' : 'No instrument enrolled');
+          }).catch(function(err) {
+              error(err);
+          });
         }
 
-    if (request.onpaymentmethodchange !== undefined) {
-      info('Will print out payment method change event details here.');
-      request.addEventListener('paymentmethodchange', (evt) => {
-        info('Payment method change event: ' + JSON.stringify({'methodName': evt.methodName, 'methodDetails': evt.methodDetails}, undefined, 2));
-      });
-    }
-       } catch (e) {
-        error('Developer mistake: \'' + e + '\'');
+        if (request.onpaymentmethodchange !== undefined) {
+          request.addEventListener('paymentmethodchange', (evt) => {
+            info('Payment method change event: ' + JSON.stringify({'methodName': evt.methodName, 'methodDetails': evt.methodDetails}, undefined, 2));
+          });
+        }
+    } catch (e) {
+      error('Developer mistake: \'' + e + '\'');
     }
 
     return request;
@@ -98,16 +101,14 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
     try {
         request.show()
             .then(function(instrumentResponse) {
-                window.setTimeout(function() {
-                    instrumentResponse.complete('success')
-                        .then(function() {
-                            done('This is a demo website. No payment will be processed.', instrumentResponse);
-                        })
-                        .catch(function(err) {
-                            error(err);
-                            request = buildPaymentRequest();
-                        });
-                }, 2000);
+                instrumentResponse.complete('success')
+                    .then(function() {
+                        done('This is a demo website. No payment will be processed.', instrumentResponse);
+                    })
+                    .catch(function(err) {
+                        error(err);
+                        request = buildPaymentRequest();
+                    });
             })
             .catch(function(err) {
                 error(err);

@@ -48,3 +48,19 @@ div {
 #spinner {
   display: none;
 }
+
+#value {
+  font-weight: bold;
+}
+
+#currency {
+  font-weight: bold;
+}
+
+#creditorName {
+  font-weight: bold;
+}
+
+#creditorAccount {
+  font-weight: bold;
+}

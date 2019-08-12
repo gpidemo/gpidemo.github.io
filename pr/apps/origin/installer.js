@@ -111,8 +111,7 @@ function install() {
             registration.paymentManager.instruments
                 .set('instrument-key', {
                     name: 'Chrome uses name and icon from the web app manifest',
-                    enabledMethods: ['https://gpidemo.github.io'],
-                    method: 'https://gpidemo.github.io',
+                    method: window.location.origin,
                 })
                 .then(() => {
                     registration.paymentManager.instruments.get('instrument-key').then((instrument) => {
