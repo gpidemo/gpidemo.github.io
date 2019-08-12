@@ -63,21 +63,28 @@ function buildPaymentRequest() {
 
     try {
         request = new PaymentRequest(supportedInstruments, details);
-          if (request.canMakePayment) {
-            request.canMakePayment().then(function(result) {
-               info(result ? 'Can make payment' : 'Cannot make payment');
-            }).catch(function(err) {
-                error(err);
-            });
+        if (request.canMakePayment) {
+          request.canMakePayment().then(function(result) {
+              info(result ? 'Can make payment' : 'Cannot make payment');
+          }).catch(function(err) {
+              error(err);
+          });
+        }
+        if (request.hasEnrolledInstrument) {
+          request.hasEnrolledInstrument().then(function(result) {
+              info(result ? 'Has enrolled instrument' : 'No instrument enrolled');
+          }).catch(function(err) {
+              error(err);
+          });
         }
 
-    if (request.onpaymentmethodchange !== undefined) {
-      request.addEventListener('paymentmethodchange', (evt) => {
-        info('Payment method change event: ' + JSON.stringify({'methodName': evt.methodName, 'methodDetails': evt.methodDetails}, undefined, 2));
-      });
-    }
-       } catch (e) {
-        error('Developer mistake: \'' + e + '\'');
+        if (request.onpaymentmethodchange !== undefined) {
+          request.addEventListener('paymentmethodchange', (evt) => {
+            info('Payment method change event: ' + JSON.stringify({'methodName': evt.methodName, 'methodDetails': evt.methodDetails}, undefined, 2));
+          });
+        }
+    } catch (e) {
+      error('Developer mistake: \'' + e + '\'');
     }
 
     return request;
