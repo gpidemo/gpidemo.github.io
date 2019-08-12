@@ -1,4 +1,0 @@
-{
-  "default_applications": ["https://gpidemo.github.io/gpi/pay/manifest.json"],
-  "supported_origins": ["https://gpidemo.github.io"]
-}

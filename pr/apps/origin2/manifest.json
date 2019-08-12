@@ -1,8 +1,0 @@
-{
-    "name": "gpi Tracked Payment Payment Handler",
-    "icons": [{
-        "src": "gpi.png",
-        "sizes": "399x399",
-        "type": "image/png"
-    }]
-}
