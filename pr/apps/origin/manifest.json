@@ -1,5 +1,6 @@
 {
     "name": "gpi Tracked Payment",
+    "short_name": "gpiPay",
     "icons": [{
         "src": "gpi.png",
         "sizes": "399x399",
