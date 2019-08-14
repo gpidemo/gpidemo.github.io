@@ -9,16 +9,13 @@ function buildPaymentRequest() {
         return null;
     }
 
-	let uuid4 = generateUUIDv4();
-	console.log (uuid4);
-
     let supportedInstruments = [{
         supportedMethods: 'basic-card',
 	}, {
         supportedMethods: window.location.origin,
         data: {
-          supportedNetworks: ['gpi'],
-          UETR: uuid4,
+          supportedNetworks: ['GPI'],
+          UETR: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
           creditorAccount: 'CREDITACC1234',
           creditorName: 'Merchant',
           creditorBankCode: 'SWHQBEBB',
@@ -123,16 +120,4 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         error('Developer mistake: \'' + e + '\'');
         request = buildPaymentRequest();
     }
-}
-
-function generateUUIDv4() { // Public Domain/MIT
-    var d = new Date().getTime();
-    if (typeof performance !== 'undefined' && typeof performance.now === 'function'){
-        d += performance.now(); //use high-precision timer if available
-    }
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = (d + Math.random() * 16) % 16 | 0;
-        d = Math.floor(d / 16);
-        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
 }
