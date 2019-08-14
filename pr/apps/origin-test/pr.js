@@ -18,7 +18,7 @@ function buildPaymentRequest() {
         supportedMethods: window.location.origin,
         data: {
           supportedNetworks: ['gpi'],
-          UETR: uuidv4,
+          UETR: uuid4,
           creditorAccount: 'CREDITACC1234',
           creditorName: 'Merchant',
           creditorBankCode: 'SWHQBEBB',
