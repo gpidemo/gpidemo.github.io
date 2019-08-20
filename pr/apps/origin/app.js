@@ -25,9 +25,9 @@ self.addEventListener('message', (evt) => {
     });
     evt.openWindow('getstatus.html#' + evt.details.uetr);
     self.resolver = null;
-  }} else {
+  } else {
     console.log('Unrecognized message: ' + evt.data);
-  }
+  }}
 });
 
 self.addEventListener('paymentrequest', (evt) => {
