@@ -15,7 +15,7 @@ self.addEventListener('message', (evt) => {
       },
     });
     self.resolver = null;
-    evt.openWindow('getstatus.html#' + evt.details.uetr);
+    // evt.openWindow('getstatus.html#' + evt.details.uetr);
   } else {
     console.log('Unrecognized message: ' + evt.data);
   }
