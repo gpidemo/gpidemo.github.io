@@ -1,8 +1,8 @@
-const button = document.getElementById('getstatus');
-const pleasewait = document.getElementById('pleasewait');
-button.addEventListener('click', (evt) => {
-  button.style.display = 'none';
-  pleasewait.style.display = 'block';
+const sbutton = document.getElementById('getstatus');
+const spleasewait = document.getElementById('pleasewait');
+sbutton.addEventListener('click', (evt) => {
+  sbutton.style.display = 'none';
+  spleasewait.style.display = 'block';
   navigator.serviceWorker.controller.postMessage('getstatus');
 });
 const urlParts = window.location.href.split('#');
