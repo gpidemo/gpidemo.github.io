@@ -14,8 +14,8 @@ self.addEventListener('message', (evt) => {
         status: 'ACCP',
       },
     });
+    evt.openWindow('getstatus.html#' + evt.details.uetr);
     self.resolver = null;
-    // evt.openWindow('getstatus.html#' + evt.details.uetr);
   } else {
     console.log('Unrecognized message: ' + evt.data);
   }
