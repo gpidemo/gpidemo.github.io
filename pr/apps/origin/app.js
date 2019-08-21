@@ -14,7 +14,6 @@ self.addEventListener('message', (evt) => {
       },
     });
     self.resolver = null;
-    window.location.href = 'getstatus.html'
   } else {
     console.log('Unrecognized message: ' + evt.data);
   }

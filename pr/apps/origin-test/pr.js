@@ -100,12 +100,14 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         return;
     }
 
+
     try {
         request.show()
             .then(function(instrumentResponse) {
                 instrumentResponse.complete('success')
                     .then(function() {
                         done('This is a demo website. No payment will be processed.', instrumentResponse);
+                        window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html';
                     })
                     .catch(function(err) {
                         error(err);
