@@ -7,7 +7,26 @@ self.addEventListener('canmnakepayment', (evt) => {
 
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
-     self.resolver({
+ 
+/*  
+var xhr = new XMLHttpRequest();
+xhr.open("POST", '/server', true);
+
+//Send the proper header information along with the request
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+xhr.onreadystatechange = function() { // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        // Request finished. Do processing here.
+    }
+}
+xhr.send("foo=bar&lorem=ipsum");
+// xhr.send(new Int8Array()); 
+// xhr.send(document);
+
+*/
+ 
+    self.resolver({
       methodName: self.method,
       details: {        	
         uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
@@ -18,6 +37,8 @@ self.addEventListener('message', (evt) => {
     console.log('Unrecognized message: ' + evt.data);
   }
 });
+
+
 
 self.addEventListener('paymentrequest', (evt) => {
   self.method = evt.methodData[0].supportedMethods;
