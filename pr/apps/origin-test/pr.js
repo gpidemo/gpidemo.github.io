@@ -106,8 +106,9 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
             .then(function(instrumentResponse) {
                 instrumentResponse.complete('success')
                     .then(function() {
- //                       done('This is a demo website. No payment will be processed.', instrumentResponse);
-                        done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr , instrumentResponse);
+                        //                       done('This is a demo website. No payment will be processed.', instrumentResponse);
+                        done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.uetr , instrumentResponse);
+                        console.log('Response uetr: ' + instrumentResponse.uetr);
                     })
                     .catch(function(err) {
                         error(err);
