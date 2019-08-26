@@ -25,8 +25,7 @@ function buildPaymentRequest() {
           debtorAccount: 'DEBITACC1234',
           debtorLEI: '549300VBNQICP5TDO865',
           purpose: 'Webshop',
-          creditTransferData: 
-        {
+          creditTransferData: {
             requested_execution_date : {
               date : "2019-01-02",
             },
@@ -151,7 +150,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
                 instrumentResponse.complete('success')
                     .then(function() {
                         //                       done('This is a demo website. No payment will be processed.', instrumentResponse);
-                     console.log('Response uetr: ' + instrumentResponse.uetr);
+//                     console.log('Response uetr: ' + instrumentResponse.uetr);
  
                      done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.uetr , instrumentResponse);
 //                        console.log('Response uetr: ' + instrumentResponse.uetr);
