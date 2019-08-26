@@ -1,0 +1,28 @@
+.center {
+	text-align: center;
+}
+
+.horizontal-direction {
+	display: flex; flex-direction: row; justify-content: flex-start; align-items: center; flex-wrap: wrap;
+}
+
+#container {
+	margin: 20px;
+}
+
+
+.debtor-option {
+	flex-grow: 1;
+	margin-top: 10px; margin-bottom: 10px; padding-left: 10px;
+	background-color: #f4f4f4;
+	border-radius: 5px;
+}
+
+.debtor-description {
+	flex-grow: 1;
+	margin-left: 20px;
+}
+
+.debtor-choice {
+	justify-content: space-around;
+}
