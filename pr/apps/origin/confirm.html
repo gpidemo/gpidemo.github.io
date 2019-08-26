@@ -1,23 +1,58 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>gpi Tracked Payment</title>
-    <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../../style.css">
-</head>
-
-<body>
-    <h1>gpi Tracked Payment</h1>
-    <div>Pay following amount: <span id="value"></span> <span id="currency"></span> to
-    <p>Creditor Name: <span id="creditorName"></span></p>
-    <p>Creditor Account: <span id="creditorAccount"></span></p>?
-    <div><button id="confirm">Confirm Payment</button></div>
-    <div id="pleasewait" style="display: none;">Sending payment information to merchant...</div>
-    <script src="/redirect.js"></script>
-    <script src="confirm.js"></script>
- </body>
-
-</html>
+<!doctype html> 
+<html lang="en"> 
+	<head>
+		<meta charset="utf-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>gpi Tracked Payment</title> 
+		<link rel="icon" href="/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="../../style.css"> 
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	</head> 
+	
+	<body>
+		<div id="container">
+			<h1 class="center">gpi Tracked Payment</h1>
+			<div class="center">Pay following amount: <span id="value"></span><span id="currency"></span> to 
+			<div style="margin-top: 20px; margin-bottom: 20px;">
+				<div class="horizontal-direction debtor-option" onclick="clickChecbox(this)">
+					<input type="radio" name="debtor" checked/>
+					<div class="debtor-description">
+						<div class="horizontal-direction debtor-choice">
+							<p>Debtor Name: <span id="debtorName">Alfred Jean-Charles</span></p> 
+							<p>debtor Party ID: <span id="debtorPartyID">My ID</span></p>
+						</div>
+						<div class="horizontal-direction debtor-choice">
+							<p>debtor Account: <span id="debtorAccount">BE25 0056 8328 8588</span></p>
+							<p>debtor BIC: <span id="debtorBIC">GEBABEBB</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="horizontal-direction debtor-option" onclick="clickChecbox(this)">
+					<input type="radio" name="debtor"/>
+					<div class="debtor-description">
+						<div class="horizontal-direction debtor-choice">
+							<p>debtor Name: <span id="debtorName">Alfred Jean-Xavier</span></p> 
+							<p>debtor Party ID: <span id="debtorPartyID">My ID</span></p>
+						</div>
+						<div class="horizontal-direction debtor-choice">
+							<p>debtor Account: <span id="debtorAccount">BE25 0045 05641 5835</span></p>
+							<p>debtor BIC: <span id="debtorBIC">GEBABEBB</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<button class="center" id="confirm" style="cursor: pointer;">Confirm Payment</button>
+			<div id="pleasewait" style="display: none;">Sending payment information to merchant...</div>
+		</div>
+		
+		
+		<script src="/redirect.js"></script> 
+		<script src="confirm.js"></script>
+		<script>
+			function clickChecbox(div) {
+				div.querySelector('input[type="radio"]').checked = true;
+			}
+		</script>
+	</body>
+</html> 
