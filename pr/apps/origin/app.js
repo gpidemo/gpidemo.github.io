@@ -8,23 +8,24 @@ self.addEventListener('canmnakepayment', (evt) => {
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
  
-/*  
+
 var xhr = new XMLHttpRequest();
-xhr.open("POST", '/server', true);
+xhr.open("POST", 'https://gpilinkmanual.swiftlabapis.com/payment-initiation', true);
 
 //Send the proper header information along with the request
-xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.setRequestHeader("Content-Type", "application/json");
 
 xhr.onreadystatechange = function() { // Call a function when the state changes.
+  console.log(this.status)
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
         // Request finished. Do processing here.
+       
     }
 }
-xhr.send("foo=bar&lorem=ipsum");
-// xhr.send(new Int8Array()); 
-// xhr.send(document);
 
-*/
+xhr.send(JSON.stringify(evt.methodData[1].data.creditTransferData));
+
+
  
     self.resolver({
       methodName: self.method,
@@ -44,6 +45,6 @@ self.addEventListener('paymentrequest', (evt) => {
   self.method = evt.methodData[0].supportedMethods;
   evt.respondWith(new Promise((resolve, reject) => {
     self.resolver = resolve;
-    evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditorName + '#' + evt.methodData[0].data.creditorAccount);
+    evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[1].data.creditorName + '#' + evt.methodData[1].data.creditorAccount);
   }));
 });
