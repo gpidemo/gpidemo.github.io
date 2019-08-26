@@ -7,7 +7,9 @@ self.addEventListener('canmnakepayment', (evt) => {
 
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
- 
+
+    console.log(evt.methodData)
+ /*
 fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
   method: 'POST',
   body: evt.methodData[0].data.creditTransferData,
@@ -20,7 +22,7 @@ fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
   return response.json
 })
 .catch(err => console.error(err))
-
+*/
 
     self.resolver({
       methodName: self.method,
