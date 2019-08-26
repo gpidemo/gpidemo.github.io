@@ -17,7 +17,7 @@ function buildPaymentRequest() {
         data: {
           supportedNetworks: ['GPI'],
           uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
-	      uetr2 = uuid(),
+	      // uetr2 = uuid(),
           creditorAccount: 'CREDITACC1234',
           creditorName: 'Merchant',
           creditorBankCode: 'SWHQBEBB',
@@ -25,7 +25,7 @@ function buildPaymentRequest() {
           debtorAccount: 'DEBITACC1234',
           debtorLEI: '549300VBNQICP5TDO865',
           purpose: 'Webshop',
-          methodData: 
+          creditTransferData: 
         {
             requested_execution_date : {
               date : "2019-01-02",
@@ -64,12 +64,12 @@ function buildPaymentRequest() {
             payment_identification : {
               end_to_end_identification : "MyInVoice2You",
               uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2'
-            }
-          }
-        } 
+            },
+          },
+        }, 
     }];
 
-    console.log('Instruction uetr: ' + supportedInstruments[1].data.uetr2);
+    // console.log('Instruction uetr: ' + supportedInstruments[1].data.uetr2);
 
 	let allDisplayItems = [
   	{
