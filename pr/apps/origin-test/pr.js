@@ -61,7 +61,6 @@ function buildPaymentRequest() {
             remittance_information : 'arn:aws:acm-pca:eu-west-1:522843637103:certificate-authority\/e2a9c0fd-b62e-44a9-bcc2-02e46a1f61c2',
             payment_identification : {
               end_to_end_identification : 'MyInVoice2You',
-              uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
             },
           },
         }, 
@@ -146,7 +145,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
                     .then(function() {
                         //                       done('This is a demo website. No payment will be processed.', instrumentResponse);
 //                     console.log('Response uetr: ' + instrumentResponse.uetr);
-                       done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.uetr , instrumentResponse);
+                       //done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr , instrumentResponse);
                     })
                     .catch(function(err) {
                         error(err);
