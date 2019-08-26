@@ -1,0 +1,81 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>gpi Tracked Payment - Checkout Experience</title> 
+		<link rel="icon" href="/favicon.ico">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="checkout.stylesheet.css">
+		<style>
+			button {
+  				background-color: #4CAF50; /* Green */
+  				border: none;
+  				color: white;
+  				padding: 15px 32px;
+  				text-align: center;
+  				text-decoration: none;
+  				display: inline-block;
+  				font-size: 20px;
+			}
+		</style>
+	</head> 
+	
+	<body>
+		<h1 class="center">gpi Tracked Payment - Checkout Experience</h1>
+		<div class="row">
+		  <div class="col-25">
+			<div class="container">
+			  <h4 style="margin-bottom: 10px;">Purchase Cart</h4>
+			  <table style="width:100%; margin-bottom: 10px;">
+				<tr style="background-color: #d3d3d3;">
+		     	  <th></th>
+				  <th>Product Name</th> 
+				  <th>Unit Price (Excl. Tax)</th>
+				  <th>Qty</th>
+				  <th>Subtotal (Excl. Tax)</th>
+				</tr>
+				<tr>
+				  <td class="center-cell" style="width: 110px"><img src="pictures/headset.png" width="60" height="60"/></td>
+				  <td class="description">Plantronics Headset</td> 
+				  <td class="center-cell int-cell">$60</td>
+				  <td class="center-cell int-cell">1</td>
+				  <td class="center-cell int-cell price">$60</td>
+				</tr>
+				  <td class="center-cell" style="width: 110px"><img src="pictures/keyboard.png" width="60" height="60"/></td>
+				  <td class="description">Logitech Keyboard</td> 
+				  <td class="center-cell int-cell">$50</td>
+				  <td class="center-cell int-cell">1</td>
+				  <td class="center-cell int-cell price">$50</td>
+				</tr>
+				</tr>
+				  <td class="center-cell" style="width: 110px"><img src="pictures/mouse.png" width="60" height="60"/></td>
+				  <td class="description">Logitech Mouse</td> 
+				  <td class="center-cell int-cell">$25</td>
+				  <td class="center-cell int-cell">2</td>
+				  <td class="center-cell int-cell price">$50</td>
+				</tr>
+				</tr>
+				  <td class="center-cell" style="width: 110px"><img src="pictures/computer.jpg" width="60" height="60"/></td>
+				  <td class="description">Thinkpad 5.2 GHz Windows 10</td> 
+				  <td class="center-cell int-cell">$1000</td>
+				  <td class="center-cell int-cell">1</td>
+				  <td class="center-cell int-cell price">$1000</td>
+				</tr>
+		      </table>
+			  <hr>
+			  <p>Total (Excl. VAT)<span class="price" style="color:black"><b>$1210</b></span></p>
+			  <p>VAT (21%)<span class="price" style="color:black"><b>$1210</b></span></p>
+			  <p>Total<span class="price" style="color:black"><b>$1524,6</b></span></p>
+			  <div class=btn>
+				  <button onclick="onBuyClicked()">Pay Now</button>
+			  </div>
+			</div>			
+		  </div>
+		</div> 
+		<script src="../../util.js"></script>
+		<script src="pr.js"></script>
+		<script src="/redirect.js"></script>
+	</body>
+<html>

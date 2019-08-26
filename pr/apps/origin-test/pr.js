@@ -12,10 +12,12 @@ function buildPaymentRequest() {
     let supportedInstruments = [{
         supportedMethods: 'basic-card',
 	}, {
-        supportedMethods: window.location.origin,
+        supportedMethods: 
+        	'https://gpidemo.github.io',
         data: {
           supportedNetworks: ['GPI'],
-          UETR: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
+          uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
+	      uetr2 = uuid(),
           creditorAccount: 'CREDITACC1234',
           creditorName: 'Merchant',
           creditorBankCode: 'SWHQBEBB',
@@ -23,9 +25,51 @@ function buildPaymentRequest() {
           debtorAccount: 'DEBITACC1234',
           debtorLEI: '549300VBNQICP5TDO865',
           purpose: 'Webshop',
-        }
+          methodData: 
+        {
+            requested_execution_date : {
+              date : "2019-01-02",
+            },
+            amount : {
+              instructed_amount : {
+                currency : "EUR",
+                amount : "1.00",
+              }
+            },
+            debtor : {
+              name : "PayingCorporate",
+              organisation_identification : {
+                lei : "5299000J2N45DDNE4Y28"
+              }
+            },
+            debtor_agent : {
+              bicfi : "KREDBEBB"
+            },
+            creditor_agent : {
+              bicfi : "CITIGB2L"
+            },
+            debtor_account : {
+              iban : "BE0473244135"
+            },
+            creditor : {
+              name : "Receiving corp",
+              organisation_identification : {
+                lei : "6299300D2N76ADNE4Y55"
+              }
+            },
+            creditor_account : {
+              iban : "BE0473244135"
+            },
+            remittance_information : "arn:aws:acm-pca:eu-west-1:522843637103:certificate-authority\/e2a9c0fd-b62e-44a9-bcc2-02e46a1f61c2",
+            payment_identification : {
+              end_to_end_identification : "MyInVoice2You",
+              uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2'
+            }
+          }
+        } 
     }];
 
+    console.log('Instruction uetr: ' + supportedInstruments[1].data.uetr2);
 
 	let allDisplayItems = [
   	{
@@ -107,8 +151,10 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
                 instrumentResponse.complete('success')
                     .then(function() {
                         //                       done('This is a demo website. No payment will be processed.', instrumentResponse);
-                        done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.uetr , instrumentResponse);
-                        console.log('Response uetr: ' + instrumentResponse.uetr);
+                     console.log('Response uetr: ' + instrumentResponse.uetr);
+ 
+                     done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.uetr , instrumentResponse);
+//                        console.log('Response uetr: ' + instrumentResponse.uetr);
                     })
                     .catch(function(err) {
                         error(err);
@@ -123,4 +169,22 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         error('Developer mistake: \'' + e + '\'');
         request = buildPaymentRequest();
     }
+}
+
+
+function uuid()
+{
+    var seed = Date.now();
+    if (window.performance && typeof window.performance.now === "function") {
+        seed += performance.now();
+    }
+
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (seed + Math.random() * 16) % 16 | 0;
+        seed = Math.floor(seed/16);
+
+        return (c === 'x' ? r : r & (0x3|0x8)).toString(16);
+    });
+
+    return uuid;
 }
