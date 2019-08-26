@@ -23,7 +23,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
     }
 }
 
-xhr.send(JSON.stringify(evt.methodData[1].data.creditTransferData));
+xhr.send(JSON.stringify(evt.methodData[0].data.creditTransferData));
 
 
  
@@ -45,6 +45,6 @@ self.addEventListener('paymentrequest', (evt) => {
   self.method = evt.methodData[0].supportedMethods;
   evt.respondWith(new Promise((resolve, reject) => {
     self.resolver = resolve;
-    evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[1].data.creditorName + '#' + evt.methodData[1].data.creditorAccount);
+    evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditorName + '#' + evt.methodData[0].data.creditorAccount);
   }));
 });
