@@ -17,7 +17,6 @@ function buildPaymentRequest() {
         data: {
           supportedNetworks: ['GPI'],
           uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
-	      // uetr2 = uuid(),
           creditorAccount: 'CREDITACC1234',
           creditorName: 'Merchant',
           creditorBankCode: 'SWHQBEBB',
@@ -42,33 +41,31 @@ function buildPaymentRequest() {
               }
             },
             debtor_agent : {
-              bicfi : "KREDBEBB"
+              bicfi : "KREDBEBB",
             },
             creditor_agent : {
-              bicfi : "CITIGB2L"
+              bicfi : "CITIGB2L",
             },
             debtor_account : {
-              iban : "BE0473244135"
+              iban : "BE0473244135",
             },
             creditor : {
               name : "Receiving corp",
               organisation_identification : {
-                lei : "6299300D2N76ADNE4Y55"
+                lei : "6299300D2N76ADNE4Y55",
               }
             },
             creditor_account : {
-              iban : "BE0473244135"
+              iban : "BE0473244135",
             },
-            remittance_information : "arn:aws:acm-pca:eu-west-1:522843637103:certificate-authority\/e2a9c0fd-b62e-44a9-bcc2-02e46a1f61c2",
+            remittance_information : 'arn:aws:acm-pca:eu-west-1:522843637103:certificate-authority\/e2a9c0fd-b62e-44a9-bcc2-02e46a1f61c2',
             payment_identification : {
-              end_to_end_identification : "MyInVoice2You",
-              uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2'
+              end_to_end_identification : 'MyInVoice2You',
+              uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
             },
           },
         }, 
     }];
-
-    // console.log('Instruction uetr: ' + supportedInstruments[1].data.uetr2);
 
 	let allDisplayItems = [
   	{
@@ -142,8 +139,6 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         error('PaymentRequest API is not supported.');
         return;
     }
-
-
     try {
         request.show()
             .then(function(instrumentResponse) {
@@ -151,9 +146,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
                     .then(function() {
                         //                       done('This is a demo website. No payment will be processed.', instrumentResponse);
 //                     console.log('Response uetr: ' + instrumentResponse.uetr);
- 
-                     done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.uetr , instrumentResponse);
-//                        console.log('Response uetr: ' + instrumentResponse.uetr);
+                       done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.uetr , instrumentResponse);
                     })
                     .catch(function(err) {
                         error(err);
@@ -171,7 +164,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
 }
 
 
-function uuid()
+/* function uuid()
 {
     var seed = Date.now();
     if (window.performance && typeof window.performance.now === "function") {
@@ -187,3 +180,4 @@ function uuid()
 
     return uuid;
 }
+*/
