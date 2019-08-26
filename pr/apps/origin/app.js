@@ -39,6 +39,7 @@ console.log(self)
 
 
 self.addEventListener('paymentrequest', (evt) => {
+  console.log(evt)
   self.method = evt.methodData[0].supportedMethods;
   evt.respondWith(new Promise((resolve, reject) => {
     self.resolver = resolve;
