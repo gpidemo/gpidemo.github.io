@@ -9,8 +9,8 @@ self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
 
 console.log(evt)
-
-fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
+console.log(self)
+ fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
   method: 'POST',
   body: {},
   headers: {
