@@ -8,25 +8,20 @@ self.addEventListener('canmnakepayment', (evt) => {
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
  
-
-var xhr = new XMLHttpRequest();
-xhr.open("POST", 'https://gpilinkmanual.swiftlabapis.com/payment-initiation', true);
-
-//Send the proper header information along with the request
-xhr.setRequestHeader("Content-Type", "application/json");
-
-xhr.onreadystatechange = function() { // Call a function when the state changes.
-  console.log(this.status)
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        // Request finished. Do processing here.
-       
-    }
-}
-
-xhr.send(JSON.stringify(evt.methodData[0].data.creditTransferData));
+fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
+  method: 'POST',
+  body: evt.methodData[0].data.creditTransferData,
+  headers: {
+    "x-api-key": ""
+  }
+})
+.then((response) => {
+  console.log(response)
+  return response.json
+})
+.catch(err => console.error(err))
 
 
- 
     self.resolver({
       methodName: self.method,
       details: {        	
