@@ -36,7 +36,7 @@ self.addEventListener('message', (evt) => {
       }).then((jsonResponse) => {
         console.log(jsonResponse);
         respond('success', '972a99ab-46e8-4fbd-ae6e-77cf56909dc2');
-      })
+      });
       .catch((err) => {
       console.error(err);
       respond('failure', '');
