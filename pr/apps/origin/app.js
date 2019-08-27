@@ -18,8 +18,8 @@ function respond(statusString, uetrString) {
 
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
-    console.log(evt)
-    console.log(self)
+//    console.log(evt)
+//    console.log(self)
     fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
         method: 'POST',
         body: '',
@@ -36,8 +36,8 @@ self.addEventListener('message', (evt) => {
       }).then((jsonResponse) => {
         console.log(jsonResponse);
         respond('success', '972a99ab-46e8-4fbd-ae6e-77cf56909dc2');
-      });
-    .catch((err) => {
+      })
+      .catch((err) => {
       console.error(err);
       respond('failure', '');
     });
