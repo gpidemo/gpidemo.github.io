@@ -5,32 +5,42 @@ self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
 });
 
+function respond(statusString, uetrString) {
+  self.resolver({
+    methodName: self.method,
+    details: {
+      status: statusString,
+      uetr: uetrString,
+    },
+  });
+  self.resolver = null;
+}
+
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
-
-console.log(evt)
-console.log(self)
- fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
-  method: 'POST',
-  body: {},
-  headers: {
-    "x-api-key": ""
-  }
-})
-.then((response) => {
-  console.log(response)
-  return response.json
-})
-.catch(err => console.error(err))
-
-
-    self.resolver({
-      methodName: self.method,
-      details: {        	
-        uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
-      },
+    console.log(evt)
+    console.log(self)
+    fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
+        method: 'POST',
+        body: '',
+        headers: new Headers({
+          "x-api-key": ""
+        })
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          return response.json;
+        }
+        respond('failure', '');
+      }).then((jsonResponse) => {
+        console.log(jsonResponse);
+        respond('success', '972a99ab-46e8-4fbd-ae6e-77cf56909dc2');
+      });
+    .catch((err) => {
+      console.error(err);
+      respond('failure', '');
     });
-    self.resolver = null;
   } else {
     console.log('Unrecognized message: ' + evt.data);
   }
