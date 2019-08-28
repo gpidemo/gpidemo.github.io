@@ -1,5 +1,7 @@
 self.method = null;
 self.resolver = null;
+var methodData = null;
+
 
 self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
@@ -18,8 +20,7 @@ function respond(statusString, uetrString) {
 
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
-//    console.log(evt)
-//    console.log(self)
+    console.log(methodData)
     fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
         method: 'POST',
         body: '',
@@ -53,6 +54,7 @@ self.addEventListener('paymentrequest', (evt) => {
   self.method = evt.methodData[0].supportedMethods;
   evt.respondWith(new Promise((resolve, reject) => {
     self.resolver = resolve;
+    methodData = event.methodData[0];
     evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditorName + '#' + evt.methodData[0].data.creditorAccount);
   }));
 });
