@@ -9,6 +9,10 @@ function buildPaymentRequest() {
         return null;
     }
 
+
+    let initiation_uetr = uuid();
+    console.log(initiation_uetr);
+
     let supportedInstruments = [{
         supportedMethods: 'basic-card',
 	}, {
@@ -16,14 +20,7 @@ function buildPaymentRequest() {
         	'https://gpidemo.github.io',
         data: {
           supportedNetworks: ['GPI'],
-          uetr: '972a99ab-46e8-4fbd-ae6e-77cf56909dc2',
-          creditorAccount: 'CREDITACC1234',
-          creditorName: 'Merchant',
-          creditorBankCode: 'SWHQBEBB',
-          debtorName: 'Customer A',
-          debtorAccount: 'DEBITACC1234',
-          debtorLEI: '549300VBNQICP5TDO865',
-          purpose: 'Webshop',
+          uetr: initiation_uetr,
           creditTransferData: {
             requested_execution_date : {
               date : "2019-01-02",
@@ -163,7 +160,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
 }
 
 
-/* function uuid()
+function uuid()
 {
     var seed = Date.now();
     if (window.performance && typeof window.performance.now === "function") {
@@ -179,4 +176,3 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
 
     return uuid;
 }
-*/
