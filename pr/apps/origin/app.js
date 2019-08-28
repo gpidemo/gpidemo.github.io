@@ -2,7 +2,6 @@ self.method = null;
 self.resolver = null;
 var methodData = null;
 
-
 self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
 });
@@ -39,14 +38,14 @@ self.addEventListener('message', (evt) => {
           }
           respond('failure', '');
           })
-            .then((jsonResponse) => {
-              console.log(jsonResponse);
-              respond('success', methodData.data.uetr);
-              })
-            .catch((err) => {
-              console.error(err);
-              respond('failure', JSON.stringify(err));
-              });
+        .then((jsonResponse) => {
+            console.log(jsonResponse);
+            respond('success', methodData.data.uetr);
+          })
+        .catch((err) => {
+             console.log(err);
+             respond('failure', JSON.stringify(err));
+          });
   } else {
     console.log('Unrecognized message: ' + evt.data);
   }
@@ -60,7 +59,37 @@ self.addEventListener('paymentrequest', (evt) => {
   evt.respondWith(new Promise((resolve, reject) => {
     self.resolver = resolve;
     methodData = evt.methodData[0];
-    evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditorName + '#' + evt.methodData[0].data.creditorAccount);
+
+    console.log(methodData)
+ //   var fs = require ('fs')
+ //   var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
+ //   console.log(apikeyString);
+
+    fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
+        method: 'POST',
+        body: JSON.stringify(methodData.data.creditTransferData),
+        headers: new Headers({
+          "x-api-key": '',
+          })
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.ok) {
+            return response.json;
+          }
+          respond('failure', '');
+          })
+        .then((jsonResponse) => {
+            console.log(jsonResponse);
+            respond('success', methodData.data.uetr);
+          })
+        .catch((err) => {
+             console.log(err);
+             respond('failure', JSON.stringify(err));
+          });
+
+
+//    evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditorName + '#' + evt.methodData[0].data.creditorAccount);
   }));
 });
 
