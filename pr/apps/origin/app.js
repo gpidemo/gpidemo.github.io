@@ -54,7 +54,7 @@ self.addEventListener('paymentrequest', (evt) => {
   self.method = evt.methodData[0].supportedMethods;
   evt.respondWith(new Promise((resolve, reject) => {
     self.resolver = resolve;
-    methodData = event.methodData[0];
+    methodData = evt.methodData[0];
     evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditorName + '#' + evt.methodData[0].data.creditorAccount);
   }));
 });
