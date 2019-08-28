@@ -45,7 +45,7 @@ self.addEventListener('message', (evt) => {
               })
             .catch((err) => {
               console.error(err);
-              respond('failure', '');
+              respond('failure', err);
               });
   } else {
     console.log('Unrecognized message: ' + evt.data);
