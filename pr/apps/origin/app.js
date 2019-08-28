@@ -21,27 +21,32 @@ function respond(statusString, uetrString) {
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
     console.log(methodData)
+    var fs = require ('fs')
+    var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
+    console.log(apikeyString);
+
     fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
         method: 'POST',
-        body: '',
+        body: JSON.stringify(methodData.data.creditTransferData),
         headers: new Headers({
-          "x-api-key": ""
+          "x-api-key": apikeyString,
+          })
         })
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.ok) {
-          return response.json;
-        }
-        respond('failure', '');
-      }).then((jsonResponse) => {
-        console.log(jsonResponse);
-        respond('success', '972a99ab-46e8-4fbd-ae6e-77cf56909dc2');
-        })
-      .catch((err) => {
-      console.error(err);
-      respond('failure', '');
-    });
+        .then((response) => {
+          console.log(response);
+          if (response.ok) {
+            return response.json;
+          }
+          respond('failure', '');
+          })
+            .then((jsonResponse) => {
+              console.log(jsonResponse);
+              respond('success', methodData.data.uetr);
+              })
+            .catch((err) => {
+              console.error(err);
+              respond('failure', '');
+              });
   } else {
     console.log('Unrecognized message: ' + evt.data);
   }
@@ -58,3 +63,4 @@ self.addEventListener('paymentrequest', (evt) => {
     evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditorName + '#' + evt.methodData[0].data.creditorAccount);
   }));
 });
+
