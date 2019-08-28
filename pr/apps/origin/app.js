@@ -21,15 +21,15 @@ function respond(statusString, uetrString) {
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
     console.log(methodData)
-    var fs = require ('fs')
-    var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
-    console.log(apikeyString);
+ //   var fs = require ('fs')
+ //   var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
+ //   console.log(apikeyString);
 
     fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
         headers: new Headers({
-          "x-api-key": apikeyString,
+          "x-api-key": '',
           })
         })
         .then((response) => {
