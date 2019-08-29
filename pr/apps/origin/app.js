@@ -18,6 +18,9 @@ function respond(statusString, uetrString) {
 }
 
 self.addEventListener('message', (evt) => {
+
+  console.log ('Event: ', evt.data)
+
   if (evt.data === 'confirm' && self.resolver !== null) {
     console.log(methodData)
 
