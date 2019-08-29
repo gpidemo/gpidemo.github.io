@@ -23,7 +23,7 @@ self.addEventListener('message', (evt) => {
  //   var fs = require ('fs')
  //   var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
  //   console.log(apikeyString);
- console.log(JSON.stringify(methodData.data.creditTransferData))
+    console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
