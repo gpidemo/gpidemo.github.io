@@ -11,6 +11,7 @@ function buildPaymentRequest() {
 
 
     let initiation_uetr = uuid();
+    let apikeyString = window.localStorage.getItem("apikey"); 
     console.log(initiation_uetr);
 
     let supportedInstruments = [{
@@ -21,43 +22,44 @@ function buildPaymentRequest() {
         data: {
           supportedNetworks: ['GPI'],
           uetr: initiation_uetr,
+          apiKey :  apikeyString,
           creditTransferData: {
-            requested_execution_date : {
+            requested_execution_date: {
               date : "2019-01-02",
             },
-            amount : {
+            amount: {
               instructed_amount : {
-                currency : "EUR",
-                amount : "1.00",
+                currency: "EUR",
+                amount: "1.00",
               }
             },
-            debtor : {
-              name : "PayingCorporate",
+            debtor: {
+              name: "PayingCorporate",
+              organisation_identification: {
+                lei: "5299000J2N45DDNE4Y28"
+              }
+            },
+            debtor_agent: {
+              bicfi: "KREDBEBB",
+            },
+            creditor_agent: {
+              bicfi: "CITIGB2L",
+            },
+            debtor_account: {
+              iban: "BE0473244135",
+            },
+            creditor: {
+              name: "Receiving corp",
               organisation_identification : {
-                lei : "5299000J2N45DDNE4Y28"
+                lei: "6299300D2N76ADNE4Y55",
               }
             },
-            debtor_agent : {
-              bicfi : "KREDBEBB",
+            creditor_account: {
+              iban: "BE0473244135",
             },
-            creditor_agent : {
-              bicfi : "CITIGB2L",
-            },
-            debtor_account : {
-              iban : "BE0473244135",
-            },
-            creditor : {
-              name : "Receiving corp",
-              organisation_identification : {
-                lei : "6299300D2N76ADNE4Y55",
-              }
-            },
-            creditor_account : {
-              iban : "BE0473244135",
-            },
-            remittance_information : 'arn:aws:acm-pca:eu-west-1:522843637103:certificate-authority\/e2a9c0fd-b62e-44a9-bcc2-02e46a1f61c2',
-            payment_identification : {
-              end_to_end_identification : 'MyInVoice2You',
+            remittance_information: 'arn:aws:acm-pca:eu-west-1:522843637103:certificate-authority\/e2a9c0fd-b62e-44a9-bcc2-02e46a1f61c2',
+            payment_identification: {
+              end_to_end_identification: 'MyInVoice2You',
             },
           },
         }, 

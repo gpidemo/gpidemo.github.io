@@ -1,7 +1,6 @@
 self.method = null;
 self.resolver = null;
 var methodData = null;
-var apikeyString = null;
 
 self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
@@ -25,12 +24,11 @@ self.addEventListener('message', (evt) => {
  //   var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
  //   console.log(apikeyString);
 
-    apikeyString = window.localStorage.getItem("apikey");
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
         headers: new Headers({
-          "x-api-key": apikeyString,
+          "x-api-key": methodData.data.apiKey,
           })
         })
         .then((response) => {
@@ -67,11 +65,11 @@ self.addEventListener('paymentrequest', (evt) => {
  //   var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
  //   console.log(apikeyString);
 
-/*    fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
+    fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
         headers: new Headers({
-          "x-api-key": '',
+          "x-api-key": methodData.data.apiKey,
           })
         })
         .then((response) => {
@@ -89,9 +87,9 @@ self.addEventListener('paymentrequest', (evt) => {
              console.log(err);
              respond('failure', JSON.stringify(err));
           });
-*/
 
-    evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditTransferData.debtorName + '#' + evt.methodData[0].data.creditTransferData.debtorAccount);
+
+//    evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditTransferData.debtorName + '#' + evt.methodData[0].data.creditTransferData.debtorAccount);
   }));
 });
 
