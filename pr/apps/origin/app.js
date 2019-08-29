@@ -20,9 +20,7 @@ function respond(statusString, uetrString) {
 self.addEventListener('message', (evt) => {
   if (evt.data === 'confirm' && self.resolver !== null) {
     console.log(methodData)
- //   var fs = require ('fs')
- //   var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
- //   console.log(apikeyString);
+
     console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
@@ -62,10 +60,6 @@ self.addEventListener('paymentrequest', (evt) => {
     methodData = evt.methodData[0];
 
     console.log(methodData)
- //   var fs = require ('fs')
- //   var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
- //   console.log(apikeyString);
-
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
