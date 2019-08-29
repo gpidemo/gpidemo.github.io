@@ -39,7 +39,8 @@ self.addEventListener('message', (evt) => {
           })
         .then((jsonResponse) => {
             console.log(jsonResponse);
-            respond('success', methodData.data.uetr);
+            console.log(jsonResponse.body);
+            respond('success', jsonResponse.body.uetr);
           })
         .catch((err) => {
              console.log(err);
@@ -78,7 +79,7 @@ self.addEventListener('paymentrequest', (evt) => {
         .then((jsonResponse) => {
             console.log(jsonResponse);
             console.log(jsonResponse.body);
-            respond('success', methodData.data.uetr);
+            respond('success', jsonResponse.body.uetr);
           })
         .catch((err) => {
              console.log(err);
