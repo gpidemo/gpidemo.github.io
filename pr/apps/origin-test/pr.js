@@ -142,8 +142,9 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
             .then(function(instrumentResponse) {
                 instrumentResponse.complete('success')
                     .then(function() {
-                        done('Payment Request has been processed by gLink with uetr: ' + instrumentResponse.details.uetr, instrumentResponse);
-                        console.log(instrumentResponse);
+                       basicPopup ('https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr);
+                       console.log(instrumentResponse);
+                       done('Payment Request has been processed by gLink with uetr: ' + instrumentResponse.details.uetr, instrumentResponse);
                        //done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr , instrumentResponse);
                     })
                     .catch(function(err) {
