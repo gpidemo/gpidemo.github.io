@@ -79,9 +79,9 @@ self.addEventListener('paymentrequest', (evt) => {
           })
         .then((jsonResponse) => {
           //console.log(jsonResponse);
-          console.log('Body:', jsonResponse.body);
-          var responseBody = JSON.parse(jsonResponse.body);
-          respond('success', responseBody.uetr);
+          console.log('Body:', jsonResponse);
+          console.log('UETR:', jsonResponse.uetr);
+          respond('success', jsonResponse.uetr);
        })
         .catch((err) => {
              console.log(err);
