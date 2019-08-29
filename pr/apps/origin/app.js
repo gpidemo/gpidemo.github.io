@@ -28,6 +28,7 @@ self.addEventListener('message', (evt) => {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
         headers: new Headers({
+          "Content-Type": "application/json",
           "x-api-key": methodData.data.apiKey,
           })
         })
@@ -69,6 +70,7 @@ self.addEventListener('paymentrequest', (evt) => {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
         headers: new Headers({
+          "Content-Type": "application/json",
           "x-api-key": methodData.data.apiKey,
           })
         })
