@@ -40,7 +40,8 @@ self.addEventListener('message', (evt) => {
         .then((jsonResponse) => {
             console.log(jsonResponse);
             console.log(jsonResponse.body);
-            respond('success', jsonResponse.body.uetr);
+            var responseBody = JSON.parse(jsonResponse.body);
+            respond('success', responseBody.uetr);
           })
         .catch((err) => {
              console.log(err);
