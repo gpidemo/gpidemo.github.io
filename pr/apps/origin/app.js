@@ -78,10 +78,11 @@ self.addEventListener('paymentrequest', (evt) => {
           respond('failure', '');
           })
         .then((jsonResponse) => {
-            console.log(jsonResponse);
-            console.log(jsonResponse.body);
-            respond('success', jsonResponse.body.uetr);
-          })
+          console.log(jsonResponse);
+          console.log(jsonResponse.body);
+          var responseBody = JSON.parse(jsonResponse.body);
+          respond('success', responseBody.uetr);
+         })
         .catch((err) => {
              console.log(err);
              respond('failure', JSON.stringify(err));
