@@ -33,7 +33,7 @@ self.addEventListener('message', (evt) => {
         .then((response) => {
           console.log(response);
           if (response.ok) {
-            return response.json;
+            return response.json();
           }
           respond('failure', '');
           })
@@ -71,12 +71,13 @@ self.addEventListener('paymentrequest', (evt) => {
         .then((response) => {
           console.log(response);
           if (response.ok) {
-            return response.json;
+            return response.json();
           }
           respond('failure', '');
           })
         .then((jsonResponse) => {
             console.log(jsonResponse);
+            console.log(jsonResponse.body);
             respond('success', methodData.data.uetr);
           })
         .catch((err) => {
