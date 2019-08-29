@@ -65,7 +65,7 @@ self.addEventListener('paymentrequest', (evt) => {
  //   var apikeyString = fs.readFileSync('file:C:/NoBackup/W3CDemo/api_key.txt').toString();
  //   console.log(apikeyString);
 
-    fetch('https://gpilinkmanual.swiftlabapis.com/payment-initiation', {
+    fetch('https://glinkmanual.swiftlabapis.com/payment_initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
         headers: new Headers({
