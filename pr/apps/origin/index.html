@@ -27,6 +27,35 @@
                 <li>Scope: <code id="scope">N/A</code></li>
                 <li>Method: <code id="method">N/A</code></li>
             </ul>
+
+            <input type="file" id="myFile">
+
+            <script>
+            
+            var input = document.getElementById("myFile");
+            var output = document.getElementById("output");
+            var apikey = null;
+            
+            input.addEventListener("change", function () {
+              if (this.files && this.files[0]) {
+                var myFile = this.files[0];
+                var reader = new FileReader();
+                
+                reader.addEventListener('load', function (e) {
+             //     output.textContent = e.target.result;
+                  localStorage.setItem("apikey", e.target.result);
+                  apikey = localStorage.getItem("apikey");
+                  console.log(apikey);
+                });
+                
+                reader.readAsText(myFile);
+              }   
+            });
+            // <hr>
+            // <textarea style="width:500px;height: 400px" id="output"></textarea>
+            </script>
+            
+            
             <p><button onclick="uninstall();">Uninstall</button></p>
         </div>
 
@@ -36,6 +65,7 @@
 
         <div id="not-installed" style="display: none;">
             <p>The payment handler is not installed. <a href="../origin-test/">Verify</a>.</p>
+            <p>The payment handler is not installed. <a href="../origin-test/checkout.html">Verify</a>.</p>
             <p><button onclick="install();">Install</button></p>
         </div>
 
