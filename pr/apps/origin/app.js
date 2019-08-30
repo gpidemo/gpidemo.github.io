@@ -22,10 +22,10 @@ self.addEventListener('message', (evt) => {
 
   console.log ('Event: ', evt.data)
 
- if (self.resolver !== null) {
   switch (evt.data) {
   case 'confirm': 
- //   console.log(methodData)
+    if (self.resolver !== null) {
+    //   console.log(methodData)
  
  //   console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
@@ -54,6 +54,7 @@ self.addEventListener('message', (evt) => {
              console.log(err);
              respond('failure', JSON.stringify(err));
           });
+        };
         break;
      case 'getstatus': 
         activeUetr = 'dcd3ddf3-6db9-4595-bd6b-4365e94e2990';
@@ -88,7 +89,7 @@ self.addEventListener('message', (evt) => {
      default: 
     console.log('Unrecognized message: ' + evt.data);
   }
-}
+
 });
 
 
