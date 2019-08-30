@@ -1,6 +1,7 @@
 self.method = null;
 self.resolver = null;
 var methodData = null;
+var activeUetr = null;
 
 self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
@@ -21,9 +22,12 @@ self.addEventListener('message', (evt) => {
 
   console.log ('Event: ', evt.data)
 
-  if (evt.data === 'confirm' && self.resolver !== null) {
+ if (self.resolver !== null) {
+  console.log(self.resolver)
+  switch (evt.data) {
+  case 'confirm': 
     console.log(methodData)
-
+ 
     console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
@@ -41,18 +45,50 @@ self.addEventListener('message', (evt) => {
           respond('failure', '');
           })
         .then((jsonResponse) => {
-            console.log(jsonResponse);
-            console.log(jsonResponse.body);
-            var responseBody = JSON.parse(jsonResponse.body);
-            respond('success', responseBody.uetr);
+            //console.log(jsonResponse);
+            console.log('Body:', jsonResponse);
+            console.log('UETR:', jsonResponse.uetr);
+            activeUetr = jsonResponse.uetr;
+            respond('success', jsonResponse.uetr);
           })
         .catch((err) => {
              console.log(err);
              respond('failure', JSON.stringify(err));
           });
-  } else {
+        break;
+     case 'getstatus': 
+        console.log('Active UETR: ', activeUetr)
+    
+        console.log(JSON.stringify(methodData.data.creditTransferData));
+        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/trackerstatus', {
+            method: 'GET',
+            headers: new Headers({
+              "Content-Type": "application/json",
+              "x-api-key": methodData.data.apiKey,
+              })
+            })
+            .then((response) => {
+              console.log(response);
+              if (response.ok) {
+                return response.json();
+              }
+              respond('failure', '');
+              })
+            .then((jsonResponse) => {
+                //console.log(jsonResponse);
+                console.log('Body:', jsonResponse);
+                console.log('UETR:', jsonResponse.uetr);
+                respond('success', jsonResponse.uetr);
+              })
+            .catch((err) => {
+                 console.log(err);
+                 respond('failure', JSON.stringify(err));
+              });
+            break;
+     default: 
     console.log('Unrecognized message: ' + evt.data);
   }
+}
 });
 
 
