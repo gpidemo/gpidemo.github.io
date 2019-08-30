@@ -26,9 +26,9 @@ self.addEventListener('message', (evt) => {
   console.log(self.resolver)
   switch (evt.data) {
   case 'confirm': 
-    console.log(methodData)
+ //   console.log(methodData)
  
-    console.log(JSON.stringify(methodData.data.creditTransferData));
+ //   console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
@@ -38,7 +38,7 @@ self.addEventListener('message', (evt) => {
           })
         })
         .then((response) => {
-          console.log(response);
+  //        console.log(response);
           if (response.ok) {
             return response.json();
           }
@@ -46,7 +46,7 @@ self.addEventListener('message', (evt) => {
           })
         .then((jsonResponse) => {
             //console.log(jsonResponse);
-            console.log('Body:', jsonResponse);
+   //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
             activeUetr = jsonResponse.uetr;
             respond('success', jsonResponse.uetr);
@@ -59,7 +59,6 @@ self.addEventListener('message', (evt) => {
      case 'getstatus': 
         console.log('Active UETR: ', activeUetr)
     
-        console.log(JSON.stringify(methodData.data.creditTransferData));
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/trackerstatus', {
             method: 'GET',
             headers: new Headers({
@@ -68,7 +67,7 @@ self.addEventListener('message', (evt) => {
               })
             })
             .then((response) => {
-              console.log(response);
+              console.log('GetStatus', response);
               if (response.ok) {
                 return response.json();
               }
@@ -77,7 +76,7 @@ self.addEventListener('message', (evt) => {
             .then((jsonResponse) => {
                 //console.log(jsonResponse);
                 console.log('Body:', jsonResponse);
-                console.log('UETR:', jsonResponse.uetr);
+                console.log('Status UETR:', jsonResponse.uetr);
                 respond('success', jsonResponse.uetr);
               })
             .catch((err) => {
