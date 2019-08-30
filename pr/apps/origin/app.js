@@ -47,7 +47,6 @@ self.addEventListener('message', (evt) => {
             //console.log(jsonResponse);
    //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
-            localStorage.setItem('uetr', jsonResponse.uetr);
             console.log('Local uetr',  localStorage.getItem('uetr'));
             respond('success', jsonResponse.uetr);
           })
@@ -57,7 +56,7 @@ self.addEventListener('message', (evt) => {
           });
         break;
      case 'getstatus': 
-        activeUetr = localStorage.getItem("uetr");
+        activeUetr = 'dcd3ddf3-6db9-4595-bd6b-4365e94e2990';
         console.log('Active UETR: ', activeUetr)
         console.log('Get methodData:', methodData);
     
