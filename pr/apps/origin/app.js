@@ -64,8 +64,8 @@ self.addEventListener('message', (evt) => {
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
-              "Content-Type": "application/json",
               "x-api-key": methodData.data.apiKey,
+              "Accept" : "application/json",
               })
             })
             .then((response) => {
