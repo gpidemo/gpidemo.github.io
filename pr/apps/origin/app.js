@@ -121,9 +121,6 @@ self.addEventListener('paymentrequest', (evt) => {
           //console.log(jsonResponse);
           console.log('Body:', jsonResponse);
           console.log('UETR:', jsonResponse.uetr);
-
-          localStorage.setItem('uetr', jsonResponse.uetr);
-          console.log('Local uetr',  localStorage.getItem('uetr'));
           respond('success', jsonResponse.uetr);
        })
         .catch((err) => {

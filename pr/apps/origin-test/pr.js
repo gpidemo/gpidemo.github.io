@@ -165,7 +165,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
 
 // Popup window function
 function basicPopup(url) {
-  popupWindow = window.open(url,'popUpWindow','height=500,width=500,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
+  popupWindow = window.open(url,'popUpWindow','height=300,width=500,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no, status=yes');
 }
 
 function uuid()
