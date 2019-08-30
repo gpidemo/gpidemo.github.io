@@ -73,17 +73,18 @@ self.addEventListener('message', (evt) => {
               if (response.ok) {
                 return response.json();
               }
-              respond('failure', '');
+              // respond('failure', '');
+              console.log ('Failure - reponse.ok')
               })
             .then((jsonResponse) => {
                 //console.log(jsonResponse);
                 console.log('Body:', jsonResponse);
                 console.log('Status UETR:', jsonResponse.uetr);
-                respond('success', jsonResponse.uetr);
+                // respond('success', jsonResponse.uetr);
               })
             .catch((err) => {
                  console.log(err);
-                 respond('failure', JSON.stringify(err));
+                 // respond('failure', JSON.stringify(err));
               });
             break;
      default: 
