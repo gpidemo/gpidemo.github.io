@@ -78,6 +78,7 @@ self.addEventListener('message', (evt) => {
                 //console.log(jsonResponse);
                 console.log('Body:', jsonResponse);
                 console.log('Status UETR:', jsonResponse.uetr);
+                activeUetr = jsonResponse.uetr;
                 respond('success', jsonResponse.uetr);
               })
             .catch((err) => {
@@ -120,6 +121,7 @@ self.addEventListener('paymentrequest', (evt) => {
           //console.log(jsonResponse);
           console.log('Body:', jsonResponse);
           console.log('UETR:', jsonResponse.uetr);
+          activeUetr = jsonResponse.uetr;
           respond('success', jsonResponse.uetr);
        })
         .catch((err) => {
