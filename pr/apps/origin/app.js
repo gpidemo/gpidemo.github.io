@@ -65,7 +65,7 @@ self.addEventListener('message', (evt) => {
             method: 'GET',
             headers: new Headers({
               "x-api-key": methodData.data.apiKey,
-              "Accept" : "application/json",
+              "accept" : "application/json",
               })
             })
             .then((response) => {
