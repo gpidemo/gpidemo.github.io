@@ -60,7 +60,7 @@ self.addEventListener('message', (evt) => {
      case 'getstatus': 
         console.log('Active UETR: ', activeUetr)
     
-        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/trackerstatus', {
+        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation/' + activeUetr + '/trackerstatus', {
             method: 'GET',
             headers: new Headers({
               "Content-Type": "application/json",
