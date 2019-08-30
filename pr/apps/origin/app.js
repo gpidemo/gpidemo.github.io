@@ -61,7 +61,7 @@ self.addEventListener('message', (evt) => {
         console.log('Active UETR: ', activeUetr)
         console.log('Get methodData:', methodData);
     
-        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation/' + activeUetr + '/tracker_status', {
+        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
               "x-api-key": methodData.data.apiKey,
