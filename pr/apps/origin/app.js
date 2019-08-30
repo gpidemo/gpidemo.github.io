@@ -74,7 +74,7 @@ self.addEventListener('message', (evt) => {
                 return response.json();
               }
               // respond('failure', '');
-              console.log ('Failure - reponse.ok')
+              console.log ('Failure - reponse.ok');
               })
             .then((jsonResponse) => {
                 //console.log(jsonResponse);
