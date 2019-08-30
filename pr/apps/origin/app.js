@@ -15,7 +15,8 @@ function respond(statusString, uetrString) {
       uetr: uetrString,
     },
   });
-  self.resolver = null;
+  console.log(self.resolver);
+  //  self.resolver = null;
 }
 
 self.addEventListener('message', (evt) => {
