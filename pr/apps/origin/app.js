@@ -47,9 +47,6 @@ self.addEventListener('message', (evt) => {
             //console.log(jsonResponse);
    //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
-            activeUetr = jsonResponse.uetr;
-            sessionStorage.setItem("uetr", e.target.result);
-            activeUetr = sessionStorage.getItem("uetr");
             console.log(activeUetr);
       respond('success', jsonResponse.uetr);
           })

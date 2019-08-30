@@ -4,8 +4,13 @@ sbutton.addEventListener('click', (evt) => {
   sbutton.style.display = 'none';
   spleasewait.style.display = 'block';
 //  navigator.serviceWorker.controller.postMessage('getstatus');
-var activeUetr = document.getElementById('uetr');
+var activeUetr = document.getElementById('uetr').innerHTML;
 console.log('Active UETR:', activeUetr);
+
+apiKey = localStorage.getItem("apikey");
+
+
+
 fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation/' + activeUetr + '/tracker_status', {
   method: 'GET',
   headers: new Headers({
