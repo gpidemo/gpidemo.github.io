@@ -15,8 +15,7 @@ function respond(statusString, uetrString) {
       uetr: uetrString,
     },
   });
-  console.log(self);
-  //  self.resolver = null;
+  self.resolver = null;
 }
 
 self.addEventListener('message', (evt) => {
@@ -24,7 +23,6 @@ self.addEventListener('message', (evt) => {
   console.log ('Event: ', evt.data)
 
  if (self.resolver !== null) {
-  console.log(self.resolver)
   switch (evt.data) {
   case 'confirm': 
  //   console.log(methodData)
@@ -50,7 +48,10 @@ self.addEventListener('message', (evt) => {
    //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
             activeUetr = jsonResponse.uetr;
-            respond('success', jsonResponse.uetr);
+            localStorage.setItem("uetr", e.target.result);
+            activeUetr = localStorage.getItem("uetr");
+            console.log(activeUetr);
+      respond('success', jsonResponse.uetr);
           })
         .catch((err) => {
              console.log(err);
@@ -58,8 +59,10 @@ self.addEventListener('message', (evt) => {
           });
         break;
      case 'getstatus': 
+        activeUetr = localStorage.getItem("uetr");
         console.log('Active UETR: ', activeUetr)
         console.log('Get UETR:', jsonResponse.uetr);
+        console.log('Get methodData:', methodData);
     
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation/' + activeUetr + '/trackerstatus', {
             method: 'GET',
