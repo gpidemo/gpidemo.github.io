@@ -64,7 +64,7 @@ self.addEventListener('message', (evt) => {
         console.log('Get UETR:', jsonResponse.uetr);
         console.log('Get methodData:', methodData);
     
-        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation/' + activeUetr + '/trackerstatus', {
+        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
               "Content-Type": "application/json",
