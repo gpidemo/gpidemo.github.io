@@ -3,8 +3,8 @@ const spleasewait = document.getElementById('pleasewait');
 sbutton.addEventListener('click', (evt) => {
   sbutton.style.display = 'none';
   spleasewait.style.display = 'block';
-//  navigator.serviceWorker.controller.postMessage('getstatus');
-var activeUetr = document.getElementById('uetr').innerHTML;
+  navigator.serviceWorker.controller.postMessage('getstatus');
+/*var activeUetr = document.getElementById('uetr').innerHTML;
 console.log('Active UETR:', activeUetr);
 
 apiKey = localStorage.getItem("apikey");
@@ -35,8 +35,8 @@ fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment
        console.log(err);
        respond('failure', JSON.stringify(err));
     });
-  
-});
+*/  
+}); 
 const urlParts = window.location.href.split('#');
 if (urlParts.length === 2) {
   document.getElementById('uetr').innerHTML = urlParts[1];

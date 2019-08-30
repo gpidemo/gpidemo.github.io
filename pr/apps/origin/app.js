@@ -47,8 +47,9 @@ self.addEventListener('message', (evt) => {
             //console.log(jsonResponse);
    //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
-            console.log(activeUetr);
-      respond('success', jsonResponse.uetr);
+            localStorage.setItem('uetr', jsonResponse.uetr);
+            console.log('Local uetr',  localStorage.getItem('uetr'));
+            respond('success', jsonResponse.uetr);
           })
         .catch((err) => {
              console.log(err);
@@ -56,7 +57,7 @@ self.addEventListener('message', (evt) => {
           });
         break;
      case 'getstatus': 
-        activeUetr = sessionStorage.getItem("uetr");
+        activeUetr = localStorage.getItem("uetr");
         console.log('Active UETR: ', activeUetr)
         console.log('Get methodData:', methodData);
     
@@ -121,7 +122,8 @@ self.addEventListener('paymentrequest', (evt) => {
           console.log('Body:', jsonResponse);
           console.log('UETR:', jsonResponse.uetr);
 
-          activeUetr = jsonResponse.uetr;
+          localStorage.setItem('uetr', jsonResponse.uetr);
+          console.log('Local uetr',  localStorage.getItem('uetr'));
           respond('success', jsonResponse.uetr);
        })
         .catch((err) => {
