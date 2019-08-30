@@ -24,7 +24,7 @@ fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment
       //console.log(jsonResponse);
       console.log('Body:', jsonResponse);
       console.log('Status UETR:', jsonResponse.uetr);
-      document.getElementById('status').innerHTML = jsonResponse.status;
+      document.getElementById('status').innerHTML = jsonResponse.uetr;
     })
   .catch((err) => {
        console.log(err);
@@ -35,4 +35,5 @@ fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment
 const urlParts = window.location.href.split('#');
 if (urlParts.length === 2) {
   document.getElementById('uetr').innerHTML = urlParts[1];
+  document.getElementById('status').innerHTML = 'ACSP';
 }
