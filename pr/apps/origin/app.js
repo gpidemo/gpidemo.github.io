@@ -64,6 +64,7 @@ self.addEventListener('message', (evt) => {
         console.log('Active UETR: ', activeUetr)
         // console.log('Get methodData:', methodData);
         console.log ('Event - GetStatus:', evt);
+        console.log ('Self - GetStatus:', self);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
@@ -72,7 +73,7 @@ self.addEventListener('message', (evt) => {
               })
             })
             .then((response) => {
-              console.log('GetStatus', response);
+              // console.log('GetStatus', response);
               if (response.ok) {
                 return response.json();
               }
@@ -98,6 +99,7 @@ self.addEventListener('message', (evt) => {
         console.log('Active UETR: ', activeUetr)
         // console.log('Set methodData:', methodData);
         console.log ('Event - SetStatus:', evt);
+        console.log ('Self - SetStatus:', self);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status?newstatus=ACCC', {
             method: 'POST',
             headers: new Headers({
