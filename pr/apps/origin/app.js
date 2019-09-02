@@ -62,7 +62,7 @@ self.addEventListener('message', (evt) => {
         activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         console.log('Active UETR: ', activeUetr)
         console.log('Get methodData:', methodData);
-        console.log ('Event - GetStatus:' evt);
+        console.log ('Event - GetStatus:', evt);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
@@ -80,9 +80,11 @@ self.addEventListener('message', (evt) => {
               })
             .then((jsonResponse) => {
                 //console.log(jsonResponse);
-                console.log('Body:', jsonResponse);
-                console.log('Status UETR:', jsonResponse.uetr);
-                // respond('success', jsonResponse.uetr);
+                console.log('Get Status Body:', jsonResponse);
+                // console.log('Status UETR:', jsonResponse.uetr);
+                console.log('Self:', self)
+                self.location.reload();
+                                // respond('success', jsonResponse.uetr);
 
               })
             .catch((err) => {
@@ -94,12 +96,12 @@ self.addEventListener('message', (evt) => {
         activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         console.log('Active UETR: ', activeUetr)
         console.log('Get methodData:', methodData);
-        console.log ('Event - SetStatus:' evt);
+        console.log ('Event - SetStatus:', evt);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'POST',
             headers: new Headers({
               "x-api-key": methodData.data.apiKey,
-              "newstatus": "ACCC"
+              "newstatus": "ACCC",
               "accept" : "application/json",
               })
             })
@@ -113,8 +115,9 @@ self.addEventListener('message', (evt) => {
               })
             .then((jsonResponse) => {
                 //console.log(jsonResponse);
-                console.log('Body:', jsonResponse);
-                console.log('Status UETR:', jsonResponse.uetr);
+                console.log('Set Status Body:', jsonResponse);
+                self.location.reload();
+                // console.log('Status UETR:', jsonResponse.uetr);
                 // respond('success', jsonResponse.uetr);
               
               })
