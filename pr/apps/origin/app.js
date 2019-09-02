@@ -50,6 +50,7 @@ self.addEventListener('message', (evt) => {
    //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
             methodData.data.uetr = jsonResponse.uetr;
+            console.log('methodData.data.uetr:',methodData.data.uetr )
             respond('success', jsonResponse.uetr);
           })
         .catch((err) => {
@@ -61,7 +62,7 @@ self.addEventListener('message', (evt) => {
      case 'getstatus': 
         activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         console.log('Active UETR: ', activeUetr)
-        console.log('Get methodData:', methodData);
+        // console.log('Get methodData:', methodData);
         console.log ('Event - GetStatus:', evt);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'GET',
@@ -82,8 +83,8 @@ self.addEventListener('message', (evt) => {
                 //console.log(jsonResponse);
                 console.log('Get Status Body:', jsonResponse);
                 // console.log('Status UETR:', jsonResponse.uetr);
-                console.log('Self:', self)
-                self.location.reload();
+                //console.log('Self:', self)
+                //self.location.reload();
                                 // respond('success', jsonResponse.uetr);
 
               })
@@ -95,18 +96,17 @@ self.addEventListener('message', (evt) => {
      case 'setstatus': 
         activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         console.log('Active UETR: ', activeUetr)
-        console.log('Get methodData:', methodData);
+        // console.log('Set methodData:', methodData);
         console.log ('Event - SetStatus:', evt);
-        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
+        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status?newstatus=ACCC', {
             method: 'POST',
             headers: new Headers({
               "x-api-key": methodData.data.apiKey,
-              "newstatus": "ACCC",
               "accept" : "application/json",
               })
             })
             .then((response) => {
-              console.log('GetStatus', response);
+              // console.log('SetStatus', response);
               if (response.ok) {
                 return response.json();
               }
@@ -116,7 +116,7 @@ self.addEventListener('message', (evt) => {
             .then((jsonResponse) => {
                 //console.log(jsonResponse);
                 console.log('Set Status Body:', jsonResponse);
-                self.location.reload();
+                location.reload();
                 // console.log('Status UETR:', jsonResponse.uetr);
                 // respond('success', jsonResponse.uetr);
               
