@@ -18,6 +18,8 @@ function respond(statusString, uetrString) {
   self.resolver = null;
 }
 
+
+
 self.addEventListener('message', (evt) => {
 
   console.log ('Event: ', evt.data)
@@ -47,7 +49,7 @@ self.addEventListener('message', (evt) => {
             //console.log(jsonResponse);
    //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
-            console.log('Local uetr',  localStorage.getItem('uetr'));
+            methodData.data.uetr = jsonResponse.uetr;
             respond('success', jsonResponse.uetr);
           })
         .catch((err) => {
@@ -57,10 +59,10 @@ self.addEventListener('message', (evt) => {
         };
         break;
      case 'getstatus': 
-        activeUetr = 'dcd3ddf3-6db9-4595-bd6b-4365e94e2990';
+        activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         console.log('Active UETR: ', activeUetr)
         console.log('Get methodData:', methodData);
-    
+        console.log ('Event - GetStatus:' evt);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
@@ -81,6 +83,40 @@ self.addEventListener('message', (evt) => {
                 console.log('Body:', jsonResponse);
                 console.log('Status UETR:', jsonResponse.uetr);
                 // respond('success', jsonResponse.uetr);
+
+              })
+            .catch((err) => {
+                 console.log(err);
+                 // respond('failure', JSON.stringify(err));
+              });
+            break;
+     case 'setstatus': 
+        activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
+        console.log('Active UETR: ', activeUetr)
+        console.log('Get methodData:', methodData);
+        console.log ('Event - SetStatus:' evt);
+        fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
+            method: 'POST',
+            headers: new Headers({
+              "x-api-key": methodData.data.apiKey,
+              "newstatus": "ACCC"
+              "accept" : "application/json",
+              })
+            })
+            .then((response) => {
+              console.log('GetStatus', response);
+              if (response.ok) {
+                return response.json();
+              }
+              // respond('failure', '');
+              console.log ('Failure - reponse.ok');
+              })
+            .then((jsonResponse) => {
+                //console.log(jsonResponse);
+                console.log('Body:', jsonResponse);
+                console.log('Status UETR:', jsonResponse.uetr);
+                // respond('success', jsonResponse.uetr);
+              
               })
             .catch((err) => {
                  console.log(err);

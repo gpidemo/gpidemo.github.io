@@ -1,10 +1,19 @@
-const sbutton = document.getElementById('getstatus');
-const spleasewait = document.getElementById('pleasewait');
-sbutton.addEventListener('click', (evt) => {
-  sbutton.style.display = 'none';
-  spleasewait.style.display = 'block';
+const gbutton = document.getElementById('getstatus');
+const gpleasewait = document.getElementById('pleasewait');
+gbutton.addEventListener('click', (evt) => {
+  gbutton.style.display = 'none';
+  gpleasewait.style.display = 'block';
   navigator.serviceWorker.controller.postMessage('getstatus');
-/*var activeUetr = document.getElementById('uetr').innerHTML;
+
+});
+
+  const sbutton = document.getElementById('setstatus');
+  const spleasewait = document.getElementById('pleasewait');
+  sbutton.addEventListener('click', (evt) => {
+    sbutton.style.display = 'none';
+    spleasewait.style.display = 'block';
+    navigator.serviceWorker.controller.postMessage('setstatus');
+    /*var activeUetr = document.getElementById('uetr').innerHTML;
 console.log('Active UETR:', activeUetr);
 
 apiKey = localStorage.getItem("apikey");
@@ -38,7 +47,7 @@ fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment
 */  
 }); 
 const urlParts = window.location.href.split('#');
-if (urlParts.length === 2) {
+if (urlParts.length === 3) {
   document.getElementById('uetr').innerHTML = urlParts[1];
-  document.getElementById('status').innerHTML = 'ACSP';
+  document.getElementById('status').innerHTML = urlParts[2];
 }
