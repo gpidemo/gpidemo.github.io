@@ -20,6 +20,10 @@ function respond(statusString, uetrString) {
   self.resolver = null;
 }
 
+function statusRespond(statusResponse) {
+  self.resolver(statusResponse);
+  self.resolver = null;
+}
 
 
 self.addEventListener('message', (evt) => {
@@ -108,14 +112,15 @@ self.addEventListener('message', (evt) => {
               } else
               {
                 console.log('Get Status: simulator data');
-                console.log('Event:', evt);
-                console.log ('Event ports', evt.ports);
+                // console.log('Event:', evt);
+                // console.log ('Event ports', evt.ports);
                   var statusResponse = {  
                   uetr : evt.data.details, 
                   status : simulatorStatus};
-                 console.log ("Status Response", statusResponse);
-                 var port = evt.ports[0];
-                 port.postMessage (statusResponse);
+                 console.log ("Get Status Response", statusResponse);
+                 // var port = evt.ports[0];
+                 statusRespond (statusResponse);
+                 console.log ('CallBack Done');
                 };
               break;
      case 'setstatus': 
@@ -158,15 +163,16 @@ self.addEventListener('message', (evt) => {
             } else
             {
               console.log('Set Status: simulator data');
-              console.log('Event:', evt);
-              console.log ('Event ports', evt.ports);
-              simulatorStatus = "ACCC";
-              var statusResponse = {  
-                uetr : evt.data.details, 
-                status : simulatorStatus};
-               console.log ("Status Response", statusResponse);
-               var port = evt.ports[0];
-               port.postMessage (statusResponse);
+               simulatorStatus = "ACCC";
+               // console.log('Event:', evt);
+               // console.log ('Event ports', evt.ports);
+                 var statusResponse = {  
+                 uetr : evt.data.details, 
+                 status : simulatorStatus};
+              console.log ("Get Status Response", statusResponse);
+              // var port = evt.ports[0];
+              statusRespond (statusResponse);
+              console.log ('CallBack Done');
             };
           break;
      default: 
