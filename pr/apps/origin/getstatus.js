@@ -4,7 +4,7 @@ const sbutton = document.getElementById('setstatus');
 const spleasewait = document.getElementById('spleasewait');
 
 var statusChannel = new MessageChannel();
-statusChannel.port1.addEventListener ('message',  statusReply());
+statusChannel.port1.onmessage (statusReply());
 
 gbutton.addEventListener('click', (evt) => {
   gbutton.style.display = 'none';
@@ -28,11 +28,11 @@ sbutton.addEventListener('click', (evt) => {
 
 
 function statusReply (evt)  {
-  if (evt !== null) {
+  if (evt !== null) and (evt !== undefined) {
   console.log ('Reply Status event:', evt);
 //  console.log ('Reply Status event:', evt.data);
-//  document.getElementById('uetr').innerHTML = evt.data.uetr;
-//  document.getElementById('status').innerHTML = evt.data.status;
+    document.getElementById('uetr').innerHTML = evt.data.uetr;
+    document.getElementById('status').innerHTML = evt.data.status;
   } else  {
     console.log ('Null statusReply event');
   };
