@@ -2,7 +2,8 @@ const gbutton = document.getElementById('getstatus');
 const gpleasewait = document.getElementById('gpleasewait');
 
 var statusChannel = new MessageChannel ();
-statusChannel.port1.addEventListener ('message', statusReply);
+statusChannel.port1.onmessage = statusReply;
+
 
 gbutton.addEventListener('click', (evt) => {
   console.log ('gbutton', gbutton.style.display);
@@ -13,7 +14,6 @@ gbutton.addEventListener('click', (evt) => {
   navigator.serviceWorker.controller.postMessage(
     {command : 'getstatus', details : document.getElementById('uetr').innerHTML}, 
     [statusChannel.port2]);
-
 });
 
 const sbutton = document.getElementById('setstatus');

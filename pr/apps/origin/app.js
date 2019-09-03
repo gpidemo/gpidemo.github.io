@@ -50,7 +50,7 @@ self.addEventListener('message', (evt) => {
    //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
             methodData.data.uetr = jsonResponse.uetr;
-            console.log('methodData.data.uetr:',methodData.data.uetr )
+            console.log('methodData.data.uetr:',methodData.data.uetr );
             respond('success', jsonResponse.uetr);
           })
         .catch((err) => {
@@ -62,11 +62,11 @@ self.addEventListener('message', (evt) => {
      case 'getstatus': 
         // activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         activeUetr = evt.data.details; 
-        console.log('Active UETR: ', activeUetr)
+        // console.log('Active UETR: ', activeUetr)
         // console.log('Get methodData:', methodData);
         evt.data.uetr = activeUetr;
-        console.log ('Event - GetStatus:', evt);
-        console.log ('Self - GetStatus:', self);
+        //console.log ('Event - GetStatus:', evt);
+        //console.log ('Self - GetStatus:', self);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
@@ -84,7 +84,7 @@ self.addEventListener('message', (evt) => {
               })
             .then((jsonResponse) => {
                 //console.log(jsonResponse);
-                console.log('Get Status Body:', jsonResponse);
+                //console.log('Get Status Body:', jsonResponse);
                 // console.log('Status UETR:', jsonResponse.uetr);
                 //console.log('Self:', self)
                 //self.location.reload();
@@ -94,6 +94,7 @@ self.addEventListener('message', (evt) => {
                  status : jsonResponse.transaction_status.status };
                 console.log ("Status Response", statusResponse);
                 evt.ports[0].postMessage (statusResponse);
+                console.log ('CallBack Done');
               })
             .catch((err) => {
                  console.log(err);
