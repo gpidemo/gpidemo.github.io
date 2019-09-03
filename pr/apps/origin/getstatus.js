@@ -13,8 +13,8 @@ const spleasewait = document.getElementById('spleasewait');
 sbutton.addEventListener('click', (evt) => {
   sbutton.style.display = 'none';
   spleasewait.style.display = 'block';
-  console.log ('Get Status window:' , uetr)
-  navigator.serviceWorker.controller.postMessage({command : 'setstatus', details : uetr});
+  console.log ('Set Status window:' , document.getElementById('uetr').innerHTML)
+  navigator.serviceWorker.controller.postMessage({command : 'setstatus', details : document.getElementById('uetr').innerHTML});
 }); 
 
 
