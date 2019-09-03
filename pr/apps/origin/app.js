@@ -62,6 +62,7 @@ self.addEventListener('message', (evt) => {
         };
       } else
       {
+        console.log('Payment Initiation: simulator data');
         respond('success', methodData.data.uetr);
       };
         break;
@@ -110,6 +111,7 @@ self.addEventListener('message', (evt) => {
               });
               } else
               {
+                console.log('Get Status: simulator data');
                 var statusResponse = {  
                   uetr : evt.data.details, 
                   status : simulatorStatus};
@@ -161,6 +163,7 @@ self.addEventListener('message', (evt) => {
               });
             } else
             {
+              console.log('Set Status: simulator data');
               simulatorStatus = "ACCC";
               var statusResponse = {  
                 uetr : evt.data.details, 
@@ -170,7 +173,7 @@ self.addEventListener('message', (evt) => {
             };
           break;
      default: 
-    console.log('Unrecognized message: ' + evt.data);
+        console.log('Unrecognized message: ' + evt.data);
   }
 
 });
