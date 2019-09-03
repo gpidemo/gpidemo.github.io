@@ -13,6 +13,8 @@ gbutton.addEventListener('click', (evt) => {
   gbutton.style.display = 'none';
   gpleasewait.style.display = 'block';
   console.log ('Get Status window:' , document.getElementById('uetr').innerHTML)
+  var statusChannel = new MessageChannel ();
+  statusChannel.port1.onmessage = statusReply();
   navigator.serviceWorker.controller.postMessage(
     {command : 'getstatus', details : document.getElementById('uetr').innerHTML}, 
     [statusChannel.port2]);
@@ -22,6 +24,8 @@ sbutton.addEventListener('click', (evt) => {
   sbutton.style.display = 'none';
   spleasewait.style.display = 'block';
   console.log ('Set Status window:' , document.getElementById('uetr').innerHTML)
+  var statusChannel = new MessageChannel ();
+  statusChannel.port1.onmessage = statusReply();
   navigator.serviceWorker.controller.postMessage(
     {command : 'setstatus', details : document.getElementById('uetr').innerHTML}, 
     [statusChannel.port2]);
