@@ -4,6 +4,7 @@ const sbutton = document.getElementById('setstatus');
 const spleasewait = document.getElementById('spleasewait');
 
 var getstatusChannel = new MessageChannel();
+console.log ('Channel', getstatusChannel);
 getstatusChannel.port1.onmessage = statusReply();
 
 var setstatusChannel = new MessageChannel();
