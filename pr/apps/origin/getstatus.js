@@ -28,7 +28,7 @@ sbutton.addEventListener('click', (evt) => {
 
 
 function statusReply (evt)  {
-  console.log ('Reply Status event:' evt);
+  console.log ('Reply Status event:', evt);
   document.getElementById('uetr').innerHTML = evt.uetr;
   document.getElementById('status').innerHTML = evt.status;
   gbutton.style.display = 'block';
