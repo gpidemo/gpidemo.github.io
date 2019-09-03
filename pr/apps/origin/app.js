@@ -89,11 +89,12 @@ self.addEventListener('message', (evt) => {
                 //console.log('Self:', self)
                 //self.location.reload();
                 // respond('success', jsonResponse.uetr);
+                var statusPort = evt.ports[0];
                 var statusResponse = {  
                  uetr : jsonResponse.uetr, 
                  status : jsonResponse.transaction_status.status };
                 console.log ("Status Response", statusResponse);
-                evt.ports[0].postMessage (statusResponse);
+                statusPort.postMessage (statusResponse);
                 console.log ('CallBack Done');
               })
             .catch((err) => {
@@ -129,11 +130,12 @@ self.addEventListener('message', (evt) => {
                 console.log('Set Status Body:', jsonResponse);
                 // console.log('Status UETR:', jsonResponse.uetr);
                 // respond('success', jsonResponse.uetr);
+                var statusPort = evt.ports[0];
                 var statusResponse = {  
                   uetr : jsonResponse.uetr, 
                   status : 'ACCC' };
                  console.log ("Status Response", statusResponse);
-                 evt.ports[0].postMessage (statusResponse);
+                 statusPort.postMessage (statusResponse);
                  console.log ('CallBack Done');
             
               })
