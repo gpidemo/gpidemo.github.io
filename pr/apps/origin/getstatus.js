@@ -3,7 +3,7 @@ const gpleasewait = document.getElementById('gpleasewait');
 gbutton.addEventListener('click', (evt) => {
   gbutton.style.display = 'none';
   gpleasewait.style.display = 'block';
-  console.log ('Get Status window:' , uetr)
+  console.log ('Get Status window:' , document.getElementById('uetr').innerHTML)
   navigator.serviceWorker.controller.postMessage({command : 'getstatus', details : document.getElementById('uetr').innerHTML});
 
 });
