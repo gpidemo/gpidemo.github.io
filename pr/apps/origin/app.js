@@ -91,7 +91,7 @@ self.addEventListener('message', (evt) => {
                 // respond('success', jsonResponse.uetr);
                 var statusResponse = {  
                  uetr : jsonResponse.uetr, 
-                 status : jsonReponse.transaction_status.status };
+                 status : jsonResponse.transaction_status.status };
                 console.log ("Status Response", statusResponse);
                 evt.ports[0].postMessage (statusResponse);
               })
