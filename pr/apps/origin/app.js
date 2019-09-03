@@ -129,8 +129,13 @@ self.addEventListener('message', (evt) => {
                 console.log('Set Status Body:', jsonResponse);
                 // console.log('Status UETR:', jsonResponse.uetr);
                 // respond('success', jsonResponse.uetr);
-                evt.ports[0].postMessage (jsonResponse);
-             
+                var statusResponse = {  
+                  uetr : jsonResponse.uetr, 
+                  status : jsonResponse.transaction_status.status };
+                 console.log ("Status Response", statusResponse);
+                 evt.ports[0].postMessage (statusResponse);
+                 console.log ('CallBack Done');
+            
               })
             .catch((err) => {
                  console.log(err);
