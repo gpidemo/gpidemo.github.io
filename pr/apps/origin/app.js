@@ -2,7 +2,8 @@ self.method = null;
 self.resolver = null;
 var methodData = null;
 var activeUetr = null;
-// var simulator = 1;
+var simulator = true;
+var simulatorStatus = 'ACSP'
 
 self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
@@ -28,8 +29,9 @@ self.addEventListener('message', (evt) => {
   switch (evt.data.command) {
   case 'confirm': 
     if (self.resolver !== null) {
+    if (!simulator) {
     //   console.log(methodData)
- //   console.log(JSON.stringify(methodData.data.creditTransferData));
+    //   console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
@@ -58,9 +60,14 @@ self.addEventListener('message', (evt) => {
              respond('failure', JSON.stringify(err));
           });
         };
+      } else
+      {
+        respond('success', methodData.data.uetr);
+      };
         break;
      case 'getstatus': 
-        // activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
+     if (!simulator) {
+      // activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         activeUetr = evt.data.details; 
         // console.log('Active UETR: ', activeUetr)
         // console.log('Get methodData:', methodData);
@@ -101,8 +108,17 @@ self.addEventListener('message', (evt) => {
                  console.log(err);
                  // respond('failure', JSON.stringify(err));
               });
-            break;
+              } else
+              {
+                var statusResponse = {  
+                  uetr : evt.data.details, 
+                  status : simulatorStatus};
+                 console.log ("Status Response", statusResponse);
+                 evt.ports[0].postMessage (statusResponse);
+              };
+              break;
      case 'setstatus': 
+        if (!simulator) {
         // activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         activeUetr = evt.data.details; 
         console.log('Active UETR: ', activeUetr)
@@ -143,7 +159,16 @@ self.addEventListener('message', (evt) => {
                  console.log(err);
                  // respond('failure', JSON.stringify(err));
               });
-            break;
+            } else
+            {
+              simulatorStatus = "ACCC";
+              var statusResponse = {  
+                uetr : evt.data.details, 
+                status : simulatorStatus};
+               console.log ("Status Response", statusResponse);
+               evt.ports[0].postMessage (statusResponse);
+            };
+          break;
      default: 
     console.log('Unrecognized message: ' + evt.data);
   }
