@@ -3,7 +3,7 @@ self.resolver = null;
 var methodData = null;
 var activeUetr = null;
 var simulator = true;
-var simulatorStatus = 'INIT'
+var simulatorStatus = 'INIT';
 
 self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
@@ -30,8 +30,6 @@ self.addEventListener('message', (evt) => {
   case 'confirm': 
   if (!simulator) {
     if (self.resolver !== null) {
-    //   console.log(methodData)
-    //   console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
@@ -41,15 +39,12 @@ self.addEventListener('message', (evt) => {
           })
         })
         .then((response) => {
-  //        console.log(response);
           if (response.ok) {
             return response.json();
           }
           respond('failure', '');
           })
         .then((jsonResponse) => {
-            //console.log(jsonResponse);
-   //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
             methodData.data.uetr = jsonResponse.uetr;
             console.log('methodData.data.uetr:', methodData.data.uetr);
@@ -63,7 +58,7 @@ self.addEventListener('message', (evt) => {
       } else
       {
         console.log('Payment Initiation: simulator data');
-        simulatorStatus = 'INIT'
+        simulatorStatus = 'INIT';
         console.log (evt.ports);
         respond('success', methodData.data.uetr);
       };
@@ -71,7 +66,6 @@ self.addEventListener('message', (evt) => {
      case 'getstatus': 
      if (!simulator) {
         activeUetr = evt.data.details; 
-        // console.log('Active UETR: ', activeUetr)
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
@@ -88,18 +82,12 @@ self.addEventListener('message', (evt) => {
               console.log ('Failure - reponse.ok');
               })
             .then((jsonResponse) => {
-                //console.log(jsonResponse);
-                //console.log('Get Status Body:', jsonResponse);
-                // console.log('Status UETR:', jsonResponse.uetr);
-                //console.log('Self:', self)
-                //self.location.reload();
-                // respond('success', jsonResponse.uetr);
-                // var statusPort = evt.ports[0];
                 var statusResponse = {  
                  uetr : jsonResponse.uetr, 
                  status : jsonResponse.transaction_status.status };
                 console.log ("Status Response", statusResponse);
-                evt.ports[0].postMessage (statusResponse);
+                var statusPort = evt.ports[0];
+                statusPort.postMessage (statusResponse);
                 console.log ('CallBack Done');
               })
             .catch((err) => {
@@ -111,7 +99,8 @@ self.addEventListener('message', (evt) => {
                 console.log('Get Status: simulator data');
                 console.log('Event:', evt);
                 console.log ('Event ports', evt.ports);
-                  var statusResponse = {  
+                simulatorStatus = "ACSP";
+                var statusResponse = {  
                   uetr : evt.data.details, 
                   status : simulatorStatus};
                  console.log ("Status Response", statusResponse);
