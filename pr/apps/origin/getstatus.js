@@ -48,7 +48,7 @@ function sendMessage(message) {
     };
     navigator.serviceWorker.controller.postMessage(message, [statusChannel.port2]);
   });
-}
+};
 
 
 
