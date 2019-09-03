@@ -1,8 +1,10 @@
 const gbutton = document.getElementById('getstatus');
 const gpleasewait = document.getElementById('gpleasewait');
+const sbutton = document.getElementById('setstatus');
+const spleasewait = document.getElementById('spleasewait');
 
 var statusChannel = new MessageChannel ();
-statusChannel.port1.onmessage = statusReply;
+statusChannel.port1.onmessage = statusReply();
 
 
 gbutton.addEventListener('click', (evt) => {
@@ -16,8 +18,6 @@ gbutton.addEventListener('click', (evt) => {
     [statusChannel.port2]);
 });
 
-const sbutton = document.getElementById('setstatus');
-const spleasewait = document.getElementById('spleasewait');
 sbutton.addEventListener('click', (evt) => {
   sbutton.style.display = 'none';
   spleasewait.style.display = 'block';
@@ -34,8 +34,8 @@ function statusReply (evt)  {
   document.getElementById('status').innerHTML = evt.data.status;
   gbutton.style.display = 'block';
   gpleasewait.style.display = 'none';
-  gbutton.style.display = 'block';
-  gpleasewait.style.display = 'none';
+  sbutton.style.display = 'block';
+  spleasewait.style.display = 'none';
 };
 
 
