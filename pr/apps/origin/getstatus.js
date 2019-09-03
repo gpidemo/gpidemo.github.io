@@ -42,12 +42,14 @@ function sendMessage(message) {
   // independently of a promise, but this is a convenient wrapper.
   return new Promise(function(resolve, reject) {
     var statusChannel = new MessageChannel();
-    statusChannel.port1.onmessage = function(event) {
-      if (event.data.error) {
-        reject(event.data.error);
+    statusChannel.port1.onmessage = function(evt) {
+      if (evt.data.error) {
+        reject(evt.data.error);
       } else {
-        console.log ('Promise resolve: ', event.data);
-        resolve(event.data);
+        console.log ('Promise resolve: ', evt.data);
+        statusReply (evt);
+        resolve(evt.data);
+        console.log ('After resolve')
       }
     };
     navigator.serviceWorker.controller.postMessage(message, [statusChannel.port2]);
