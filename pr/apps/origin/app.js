@@ -28,8 +28,8 @@ self.addEventListener('message', (evt) => {
 
   switch (evt.data.command) {
   case 'confirm': 
+  if (!simulator) {
     if (self.resolver !== null) {
-    if (!simulator) {
     //   console.log(methodData)
     //   console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
@@ -68,13 +68,8 @@ self.addEventListener('message', (evt) => {
         break;
      case 'getstatus': 
      if (!simulator) {
-      // activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         activeUetr = evt.data.details; 
         // console.log('Active UETR: ', activeUetr)
-        // console.log('Get methodData:', methodData);
-        evt.data.uetr = activeUetr;
-        //console.log ('Event - GetStatus:', evt);
-        //console.log ('Self - GetStatus:', self);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
@@ -121,13 +116,8 @@ self.addEventListener('message', (evt) => {
               break;
      case 'setstatus': 
         if (!simulator) {
-        // activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
         activeUetr = evt.data.details; 
         console.log('Active UETR: ', activeUetr)
-        // console.log('Get methodData:', methodData);
-        // console.log('Set methodData:', methodData);
-        // console.log ('Event - SetStatus:', evt);
-        // console.log ('Self - SetStatus:', self);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status?newstatus=ACCC', {
             method: 'POST',
             headers: new Headers({
@@ -181,13 +171,15 @@ self.addEventListener('message', (evt) => {
 
 
 self.addEventListener('paymentrequest', (evt) => {
-  console.log(evt)
+  // console.log(evt)
   self.method = evt.methodData[0].supportedMethods;
   evt.respondWith(new Promise((resolve, reject) => {
     self.resolver = resolve;
     methodData = evt.methodData[0];
 
-    console.log(methodData)
+    //console.log(methodData)
+    
+    /*
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
         body: JSON.stringify(methodData.data.creditTransferData),
@@ -213,9 +205,8 @@ self.addEventListener('paymentrequest', (evt) => {
              console.log(err);
              respond('failure', JSON.stringify(err));
           });
-
-
-//    evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditTransferData.debtorName + '#' + evt.methodData[0].data.creditTransferData.debtorAccount);
+      */
+      evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditTransferData.debtorName + '#' + evt.methodData[0].data.creditTransferData.debtorAccount);
   }));
 });
 
