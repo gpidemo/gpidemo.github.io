@@ -2,6 +2,7 @@ self.method = null;
 self.resolver = null;
 var methodData = null;
 var activeUetr = null;
+// var simulator = 1;
 
 self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
@@ -28,7 +29,6 @@ self.addEventListener('message', (evt) => {
   case 'confirm': 
     if (self.resolver !== null) {
     //   console.log(methodData)
- 
  //   console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
@@ -89,12 +89,12 @@ self.addEventListener('message', (evt) => {
                 //console.log('Self:', self)
                 //self.location.reload();
                 // respond('success', jsonResponse.uetr);
-                var statusPort = evt.ports[0];
+                // var statusPort = evt.ports[0];
                 var statusResponse = {  
                  uetr : jsonResponse.uetr, 
                  status : jsonResponse.transaction_status.status };
                 console.log ("Status Response", statusResponse);
-                statusPort.postMessage (statusResponse);
+                evt.ports[0].postMessage (statusResponse);
                 console.log ('CallBack Done');
               })
             .catch((err) => {
@@ -130,12 +130,12 @@ self.addEventListener('message', (evt) => {
                 console.log('Set Status Body:', jsonResponse);
                 // console.log('Status UETR:', jsonResponse.uetr);
                 // respond('success', jsonResponse.uetr);
-                var statusPort = evt.ports[0];
+                // var statusPort = evt.ports[0];
                 var statusResponse = {  
                   uetr : jsonResponse.uetr, 
                   status : 'ACCC' };
                  console.log ("Status Response", statusResponse);
-                 statusPort.postMessage (statusResponse);
+                 evt.ports[0].postMessage (statusResponse);
                  console.log ('CallBack Done');
             
               })
