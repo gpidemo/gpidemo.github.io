@@ -3,7 +3,7 @@ self.resolver = null;
 var methodData = null;
 var activeUetr = null;
 var simulator = true;
-var simulatorStatus = 'INIT'
+var simulatorStatus = 'INIT';
 
 self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
@@ -34,7 +34,7 @@ self.addEventListener('message', (evt) => {
     //   console.log(JSON.stringify(methodData.data.creditTransferData));
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
-        body: JSON.stringify(methodData.data.creditTransferData),
+        body: JSON.stringify(methodData.data.creditTransferData[evt.data.account]),
         headers: new Headers({
           "Content-Type": "application/json",
           "x-api-key": methodData.data.apiKey,
@@ -63,7 +63,7 @@ self.addEventListener('message', (evt) => {
       } else
       {
         console.log('Payment Initiation: simulator data');
-        simulatorStatus = 'INIT'
+        simulatorStatus = 'INIT';
         console.log (evt.ports);
         respond('success', methodData.data.uetr);
       };

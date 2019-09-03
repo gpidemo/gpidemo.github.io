@@ -23,7 +23,7 @@ function buildPaymentRequest() {
           supportedNetworks: ['GPI'],
           uetr: initiation_uetr,
           apiKey :  apikeyString,
-          creditTransferData: {
+          creditTransferData: [{
             requested_execution_date: {
               date : "2019-01-02",
             },
@@ -62,8 +62,47 @@ function buildPaymentRequest() {
               end_to_end_identification: 'MyInVoice2You',
             },
           },
-        }, 
-    }];
+          {
+            requested_execution_date: {
+              date : "2019-01-02",
+            },
+            amount: {
+              instructed_amount : {
+                currency: "EUR",
+                amount: "1.00",
+              }
+            },
+            debtor: {
+              name: "PayingCorporate",
+              organisation_identification: {
+                lei: "5299000J2N45DDNE4Y28"
+              }
+            },
+            debtor_agent: {
+              bicfi: "KREDBEBB",
+            },
+            creditor_agent: {
+              bicfi: "CITIGB2L",
+            },
+            debtor_account: {
+              iban: "BE0473244135",
+            },
+            creditor: {
+              name: "Receiving corp",
+              organisation_identification : {
+                lei: "6299300D2N76ADNE4Y55",
+              }
+            },
+            creditor_account: {
+              iban: "BE0473244135",
+            },
+            remittance_information: 'arn:aws:acm-pca:eu-west-1:522843637103:certificate-authority\/e2a9c0fd-b62e-44a9-bcc2-02e46a1f61c2',
+            payment_identification: {
+              end_to_end_identification: 'MyInVoice2You',
+            },
+        }], 
+      },
+  }];
 
 	let allDisplayItems = [
   	{
@@ -142,7 +181,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
             .then(function(instrumentResponse) {
                 instrumentResponse.complete('success')
                     .then(function() {
-                       basicPopup ('https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr + '#ACSP');
+                       basicPopup ('https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr + '#INIT');
                        console.log(instrumentResponse);
                        done('Payment Request has been processed by gLink with uetr: ' + instrumentResponse.details.uetr, instrumentResponse);
                        //done(window.location.href = 'https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr , instrumentResponse);
