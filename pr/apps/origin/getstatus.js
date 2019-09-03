@@ -3,7 +3,8 @@ const gpleasewait = document.getElementById('spleasewait');
 gbutton.addEventListener('click', (evt) => {
   gbutton.style.display = 'none';
   gpleasewait.style.display = 'block';
-  navigator.serviceWorker.controller.postMessage('getstatus');
+  console.log ('Get Status window:' , uetr)
+  navigator.serviceWorker.controller.postMessage({command : 'getstatus', details : uetr});
 
 });
 
@@ -12,7 +13,8 @@ const spleasewait = document.getElementById('spleasewait');
 sbutton.addEventListener('click', (evt) => {
   sbutton.style.display = 'none';
   spleasewait.style.display = 'block';
-  navigator.serviceWorker.controller.postMessage('setstatus');
+  console.log ('Get Status window:' , uetr)
+  navigator.serviceWorker.controller.postMessage({command : 'setstatus', details : uetr});
 }); 
 
 

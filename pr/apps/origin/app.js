@@ -24,7 +24,7 @@ self.addEventListener('message', (evt) => {
 
   console.log ('Event: ', evt.data)
 
-  switch (evt.data) {
+  switch (evt.data.command) {
   case 'confirm': 
     if (self.resolver !== null) {
     //   console.log(methodData)
@@ -60,11 +60,12 @@ self.addEventListener('message', (evt) => {
         };
         break;
      case 'getstatus': 
-        activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
+        // activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
+        activeUetr = evt.data.details; 
         console.log('Active UETR: ', activeUetr)
         // console.log('Get methodData:', methodData);
         console.log ('Event - GetStatus:', evt);
-        console.log ('Self - GetStatus:', self);
+        // console.log ('Self - GetStatus:', self);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status', {
             method: 'GET',
             headers: new Headers({
@@ -95,11 +96,13 @@ self.addEventListener('message', (evt) => {
               });
             break;
      case 'setstatus': 
-        activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
+        // activeUetr = 'e35d71f2-5ac6-4bfa-ba52-4b111b78d805';
+        activeUetr = evt.data.details; 
         console.log('Active UETR: ', activeUetr)
+        // console.log('Get methodData:', methodData);
         // console.log('Set methodData:', methodData);
-        console.log ('Event - SetStatus:', evt);
-        console.log ('Self - SetStatus:', self);
+        // console.log ('Event - SetStatus:', evt);
+        // console.log ('Self - SetStatus:', self);
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status?newstatus=ACCC', {
             method: 'POST',
             headers: new Headers({

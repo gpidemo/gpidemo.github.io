@@ -1,19 +1,17 @@
 // The static data account information should be stored in the browser.
 
-const account1 = {
-      accountOwner: 'Polaris Inc - Treasury'
-      accountOwnerId: '213800ND2KZLU8AJEP05'
+const debitAccount = [{
+      accountOwner: 'Polaris Inc - Treasury',
+      accountOwnerId: '213800ND2KZLU8AJEP05',
       accountNumber: 'DE27100777770209299700',
       bankIdentifier: 'SWHQBEBB',
   },
-};
-
-const account2 = {
-      accountOwner: 'Polaris Inc - Logistics'
-      accountOwnerId: '213800ND2KZLU8AJEP05'
+  {
+      accountOwner: 'Polaris Inc - Logistics',
+      accountOwnerId: '213800ND2KZLU8AJEP05',
       accountNumber: 'BE68844010370034',
       bankIdentifier: 'SWHQBEBB',
-};
+}];
 
 function redact(input) {
   return {
