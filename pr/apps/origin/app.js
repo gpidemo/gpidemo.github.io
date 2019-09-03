@@ -52,7 +52,7 @@ self.addEventListener('message', (evt) => {
    //         console.log('Body:', jsonResponse);
             console.log('UETR:', jsonResponse.uetr);
             methodData.data.uetr = jsonResponse.uetr;
-            console.log('methodData.data.uetr:',methodData.data.uetr );
+            console.log('methodData.data.uetr:', methodData.data.uetr);
             respond('success', jsonResponse.uetr);
           })
         .catch((err) => {
@@ -63,6 +63,7 @@ self.addEventListener('message', (evt) => {
       } else
       {
         console.log('Payment Initiation: simulator data');
+        console.log (evt.ports);
         respond('success', methodData.data.uetr);
       };
         break;
@@ -107,6 +108,7 @@ self.addEventListener('message', (evt) => {
               } else
               {
                 console.log('Get Status: simulator data');
+                console.log (evt.ports);
                 var statusResponse = {  
                   uetr : evt.data.details, 
                   status : simulatorStatus};
@@ -154,6 +156,7 @@ self.addEventListener('message', (evt) => {
             } else
             {
               console.log('Set Status: simulator data');
+              console.log (evt.ports);
               simulatorStatus = "ACCC";
               var statusResponse = {  
                 uetr : evt.data.details, 
