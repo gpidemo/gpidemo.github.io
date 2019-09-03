@@ -29,9 +29,10 @@ sbutton.addEventListener('click', (evt) => {
 
 function statusReply (evt)  {
   if (evt !== null) {
-  console.log ('Reply Status event:', evt.data);
-  document.getElementById('uetr').innerHTML = evt.data.uetr;
-  document.getElementById('status').innerHTML = evt.data.status;
+  console.log ('Reply Status event:', evt);
+//  console.log ('Reply Status event:', evt.data);
+//  document.getElementById('uetr').innerHTML = evt.data.uetr;
+//  document.getElementById('status').innerHTML = evt.data.status;
   } else  {
     console.log ('Null statusReply event');
   };
