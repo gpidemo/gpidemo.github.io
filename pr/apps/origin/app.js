@@ -3,7 +3,7 @@ self.resolver = null;
 var methodData = null;
 var activeUetr = null;
 var simulator = true;
-var simulatorStatus = 'ACSP'
+var simulatorStatus = 'INIT'
 
 self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
@@ -63,6 +63,7 @@ self.addEventListener('message', (evt) => {
       } else
       {
         console.log('Payment Initiation: simulator data');
+        simulatorStatus = 'INIT'
         console.log (evt.ports);
         respond('success', methodData.data.uetr);
       };
