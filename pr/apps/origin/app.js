@@ -108,13 +108,15 @@ self.addEventListener('message', (evt) => {
               } else
               {
                 console.log('Get Status: simulator data');
-                console.log (evt.ports);
-                var statusResponse = {  
+                console.log('Event:', evt);
+                console.log ('Event ports', evt.ports);
+                  var statusResponse = {  
                   uetr : evt.data.details, 
                   status : simulatorStatus};
                  console.log ("Status Response", statusResponse);
-                 evt.ports[0].postMessage (statusResponse);
-              };
+                 var port = evt.ports[0];
+                 port.postMessage (statusResponse);
+                };
               break;
      case 'setstatus': 
         if (!simulator) {
@@ -156,13 +158,15 @@ self.addEventListener('message', (evt) => {
             } else
             {
               console.log('Set Status: simulator data');
-              console.log (evt.ports);
+              console.log('Event:', evt);
+              console.log ('Event ports', evt.ports);
               simulatorStatus = "ACCC";
               var statusResponse = {  
                 uetr : evt.data.details, 
                 status : simulatorStatus};
                console.log ("Status Response", statusResponse);
-               evt.ports[0].postMessage (statusResponse);
+               var port = evt.ports[0];
+               port.postMessage (statusResponse);
             };
           break;
      default: 
