@@ -1,10 +1,10 @@
 const gbutton = document.getElementById('getstatus');
-const gpleasewait = document.getElementById('spleasewait');
+const gpleasewait = document.getElementById('gpleasewait');
 gbutton.addEventListener('click', (evt) => {
   gbutton.style.display = 'none';
   gpleasewait.style.display = 'block';
   console.log ('Get Status window:' , uetr)
-  navigator.serviceWorker.controller.postMessage({command : 'getstatus', details : uetr});
+  navigator.serviceWorker.controller.postMessage({command : 'getstatus', details : document.getElementById('uetr').innerHTML});
 
 });
 
