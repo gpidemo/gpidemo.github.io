@@ -43,6 +43,7 @@ function sendMessage(message) {
       if (event.data.error) {
         reject(event.data.error);
       } else {
+        console.log ('Promise resolve: ', event.data);
         resolve(event.data);
       }
     };
