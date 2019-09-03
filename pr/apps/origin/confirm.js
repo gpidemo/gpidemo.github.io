@@ -4,7 +4,7 @@ const pleasewait = document.getElementById('pleasewait');
 button.addEventListener('click', (evt) => {
   button.style.display = 'none';
   pleasewait.style.display = 'block';
-  navigator.serviceWorker.controller.postMessage({command : 'confirm', debitAccount = 0});
+  navigator.serviceWorker.controller.postMessage({command : 'confirm', debitAccount : 0});
 });
 const urlParts = window.location.href.split('#');
 if (urlParts.length === 5) {
