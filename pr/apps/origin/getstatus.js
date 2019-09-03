@@ -4,7 +4,7 @@ const sbutton = document.getElementById('setstatus');
 const spleasewait = document.getElementById('spleasewait');
 
 var statusChannel = new MessageChannel();
-statusChannel.port1.onmessage = statusReply();
+statusChannel.port1.addEventListener ('message',  statusReply());
 
 gbutton.addEventListener('click', (evt) => {
   gbutton.style.display = 'none';
