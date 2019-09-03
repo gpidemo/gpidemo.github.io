@@ -28,14 +28,13 @@ sbutton.addEventListener('click', (evt) => {
 
 
 function statusReply (evt)  {
-  console.log ('Reply Status event:', evt);
+  console.log ('Reply Status event:', evt.data);
   document.getElementById('uetr').innerHTML = evt.data.uetr;
   document.getElementById('status').innerHTML = evt.data.status;
   gbutton.style.display = 'block';
   gpleasewait.style.display = 'none';
   sbutton.style.display = 'block';
   spleasewait.style.display = 'none';
-  statusChannel.port2.close;
 };
 
 
