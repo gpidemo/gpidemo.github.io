@@ -28,7 +28,7 @@ sbutton.addEventListener('click', (evt) => {
 
 
 function statusReply (evt)  {
-  if (evt !== null) and (evt !== undefined) {
+  if ((evt !== null) && (evt !== undefined)) {
   console.log ('Reply Status event:', evt);
 //  console.log ('Reply Status event:', evt.data);
     document.getElementById('uetr').innerHTML = evt.data.uetr;
