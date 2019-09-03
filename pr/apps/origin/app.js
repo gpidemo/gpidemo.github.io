@@ -89,7 +89,7 @@ self.addEventListener('message', (evt) => {
                 //console.log('Self:', self)
                 //self.location.reload();
                                 // respond('success', jsonResponse.uetr);
-
+                evt.ports[0].postMessage (jsonResponse);
               })
             .catch((err) => {
                  console.log(err);
@@ -122,10 +122,10 @@ self.addEventListener('message', (evt) => {
             .then((jsonResponse) => {
                 //console.log(jsonResponse);
                 console.log('Set Status Body:', jsonResponse);
-                location.reload();
                 // console.log('Status UETR:', jsonResponse.uetr);
                 // respond('success', jsonResponse.uetr);
-              
+                evt.ports[0].postMessage (jsonResponse);
+             
               })
             .catch((err) => {
                  console.log(err);
