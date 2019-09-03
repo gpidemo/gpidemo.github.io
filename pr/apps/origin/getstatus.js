@@ -28,9 +28,13 @@ sbutton.addEventListener('click', (evt) => {
 
 
 function statusReply (evt)  {
+  if (evt !== null) {
   console.log ('Reply Status event:', evt.data);
   document.getElementById('uetr').innerHTML = evt.data.uetr;
   document.getElementById('status').innerHTML = evt.data.status;
+  } else  {
+    console.log ('Null statusReply event');
+  };
   gbutton.style.display = 'block';
   gpleasewait.style.display = 'none';
   sbutton.style.display = 'block';
