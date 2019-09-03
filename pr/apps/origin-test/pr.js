@@ -12,7 +12,7 @@ function buildPaymentRequest() {
 
     let initiation_uetr = uuid();
     let apikeyString = window.localStorage.getItem("apikey"); 
-    console.log(initiation_uetr);
+    // console.log(initiation_uetr);
 
     let supportedInstruments = [{
         supportedMethods: 'basic-card',
