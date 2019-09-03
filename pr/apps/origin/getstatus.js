@@ -3,11 +3,11 @@ const gpleasewait = document.getElementById('gpleasewait');
 const sbutton = document.getElementById('setstatus');
 const spleasewait = document.getElementById('spleasewait');
 
-//var getstatusChannel = new MessageChannel();
-//getstatusChannel.port1.onmessage = statusReply();
+var getstatusChannel = new MessageChannel();
+getstatusChannel.port1.onmessage = statusReply();
 
-//var setstatusChannel = new MessageChannel();
-//setstatusChannel.port1.onmessage = statusReply();
+var setstatusChannel = new MessageChannel();
+setstatusChannel.port1.onmessage = statusReply();
 
 
 gbutton.addEventListener('click', (evt) => {
@@ -15,11 +15,9 @@ gbutton.addEventListener('click', (evt) => {
   gpleasewait.style.display = 'block';
   console.log ('Get Status window:' , document.getElementById('uetr').innerHTML)
 
-  //  navigator.serviceWorker.controller.postMessage(
-  //    {command : 'getstatus', details : document.getElementById('uetr').innerHTML}, 
-  //    [getstatusChannel.port2]);
-  sendMessage({command : 'getstatus', details : document.getElementById('uetr').innerHTML});
-
+  navigator.serviceWorker.controller.postMessage(
+    {command : 'getstatus', details : document.getElementById('uetr').innerHTML}, 
+    [getstatusChannel.port2]);
 });
 
 sbutton.addEventListener('click', (evt) => {
@@ -27,11 +25,9 @@ sbutton.addEventListener('click', (evt) => {
   spleasewait.style.display = 'block';
   console.log ('Set Status window:' , document.getElementById('uetr').innerHTML)
  
-  // navigator.serviceWorker.controller.postMessage(
-  //  {command : 'setstatus', details : document.getElementById('uetr').innerHTML}, 
-  //   [setstatusChannel.port2]);
-  sendMessage({command : 'setstatus', details : document.getElementById('uetr').innerHTML});
-
+  navigator.serviceWorker.controller.postMessage(
+    {command : 'setstatus', details : document.getElementById('uetr').innerHTML}, 
+    [setstatusChannel.port2]);
 }); 
 
 function sendMessage(message) {
@@ -46,7 +42,6 @@ function sendMessage(message) {
       if (event.data.error) {
         reject(event.data.error);
       } else {
-        console.log ('Promise resolve: ', event.data);
         resolve(event.data);
       }
     };
