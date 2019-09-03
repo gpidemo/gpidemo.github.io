@@ -89,8 +89,10 @@ self.addEventListener('message', (evt) => {
                 //console.log('Self:', self)
                 //self.location.reload();
                 // respond('success', jsonResponse.uetr);
-                var statusResponse = {uetr = jsonResponse.uetr, status = jsonReponse.transaction_status.status }
-                console.log ("Status Response", statusRespons);
+                var statusResponse = {  
+                 uetr : jsonResponse.uetr, 
+                 status : jsonReponse.transaction_status.status };
+                console.log ("Status Response", statusResponse);
                 evt.ports[0].postMessage (statusResponse);
               })
             .catch((err) => {
