@@ -5,8 +5,6 @@ const spleasewait = document.getElementById('spleasewait');
 
 
 gbutton.addEventListener('click', (evt) => {
-  console.log ('gbutton', gbutton.style.display);
-  console.log ('gbutton', gpleasewait.style.display);
   gbutton.style.display = 'none';
   gpleasewait.style.display = 'block';
   console.log ('Get Status window:' , document.getElementById('uetr').innerHTML)
@@ -30,9 +28,9 @@ sbutton.addEventListener('click', (evt) => {
 
 
 function statusReply (evt)  {
-  console.log ('Reply Status', evt.data);
-  document.getElementById('uetr').innerHTML = evt.data.uetr;
-  document.getElementById('status').innerHTML = evt.data.status;
+  console.log ('Reply Status event:' evt);
+  document.getElementById('uetr').innerHTML = evt.uetr;
+  document.getElementById('status').innerHTML = evt.status;
   gbutton.style.display = 'block';
   gpleasewait.style.display = 'none';
   sbutton.style.display = 'block';
