@@ -53,6 +53,10 @@ th {
 .center-cell {
 	text-align: center;
 }
+.right-cell {
+	text-align: right;
+	justify-content: space-around;
+}
 .int-cell {
 	width: 100px;
 }

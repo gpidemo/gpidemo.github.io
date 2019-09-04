@@ -2,6 +2,11 @@
 	text-align: center;
 }
 
+.right {
+	text-align: right;
+	margin: 20px;
+}
+
 .horizontal-direction {
 	display: flex; flex-direction: row; justify-content: flex-start; align-items: center; flex-wrap: wrap;
 }

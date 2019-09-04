@@ -1,6 +1,6 @@
 // The static data account information should be stored in the browser.
 
-const debitAccount = [{
+var debitAccount = [{
       accountOwner: 'Polaris Inc - Treasury',
       accountOwnerId: '213800ND2KZLU8AJEP05',
       accountNumber: 'DE27100777770209299700',
