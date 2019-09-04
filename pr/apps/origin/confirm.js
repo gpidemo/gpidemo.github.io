@@ -10,8 +10,10 @@ button.addEventListener('click', (evt) => {
 
 const urlParts = window.location.href.split('#');
 if (urlParts.length === 5) {
- 
- console.log (urlParts);
+
+
+  console.log (window.location.href); 
+  console.log (urlParts);
   document.getElementById('currency').innerHTML = urlParts[1];
   document.getElementById('value').innerHTML = urlParts[2];
   document.getElementById('creditorName').innerHTML = urlParts[3];
@@ -38,6 +40,11 @@ function completeAccount () {
   document.getElementById('debtor1Account').innerHTML = debtorAccountString[0].accountNumber;
   document.getElementById('debtor1PartyId').innerHTML = debtorAccountString[0].accountOwnerId;
   document.getElementById('debtor1BIC').innerHTML = debtorAccountString[0].bankIdentifier;
+
+console.log ( 'debtor1Name', document.getElementById('debtor1Name').innerHTML );
+console.log ( 'debtor1Account', document.getElementById('debtor1Account').innerHTML);
+console.log ( 'debtor1PartyId', document.getElementById('debtor1PartyId').innerHTML);
+console.log ( 'debtor1BIC', document.getElementById('debtor1BIC').innerHTML);
 
   document.getElementById('debtor2Name').innerHTML = debtorAccountString[1].accountOwner;
   document.getElementById('debtor2Account').innerHTML = debtorAccountString[1].accountNumber;
