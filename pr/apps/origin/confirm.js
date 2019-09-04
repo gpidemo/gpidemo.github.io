@@ -5,7 +5,7 @@ button.addEventListener('click', (evt) => {
   console.log(evt);
   button.style.display = 'none';
   pleasewait.style.display = 'block';
-  navigator.serviceWorker.controller.postMessage({command : 'confirm', details: debitAccount[0] });
+  navigator.serviceWorker.controller.postMessage({command : 'confirm', account: 0 });
 });
 
 const urlParts = window.location.href.split('#');
