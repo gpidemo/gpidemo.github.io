@@ -2,7 +2,7 @@ self.method = null;
 self.resolver = null;
 var methodData = null;
 var activeUetr = null;
-var simulator = true;
+var simulator = false;
 var simulatorStatus = 'INIT';
 
 self.addEventListener('canmnakepayment', (evt) => {
