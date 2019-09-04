@@ -136,10 +136,14 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
             .then(function(instrumentResponse) {
                 instrumentResponse.complete('success')
                     .then(function() {
-                                               basicPopup ('https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr + '#INIT');
-                       console.log(instrumentResponse);
-                       done('Payment Request has been processed by gLink with uetr: ' + instrumentResponse.details.uetr, instrumentResponse);
-                    })
+                       if (instrumentResponse.methodName !== "basic-card") {
+                        basicPopup ('https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr + '#INIT');
+                        console.log(instrumentResponse);
+                        done('Payment Request has been processed by gLink with uetr: ' + instrumentResponse.details.uetr, instrumentResponse);
+                       } else {
+                        done('Payment Request has been processed by basic-card', instrumentResponse);
+                       };
+                      })
                     .catch(function(err) {
                         error(err);
                         request = buildPaymentRequest();
