@@ -20,10 +20,6 @@ function respond(statusString, uetrString) {
   self.resolver = null;
 }
 
-function statusRespond(statusResponse) {
-  self.resolver(statusResponse);
-  self.resolver = null;
-}
 
 
 self.addEventListener('message', (evt) => {
@@ -107,10 +103,9 @@ self.addEventListener('message', (evt) => {
                 var statusResponse = {  
                     uetr : evt.data.details, 
                   status : simulatorStatus};
-                 console.log ("Get Status Response", statusResponse);
-                 // var port = evt.ports[0];
-                 statusRespond (statusResponse);
-                 console.log ('CallBack Done');
+                 console.log ("Status Response", statusResponse);
+                 var port = evt.ports[0];
+                 port.postMessage (statusResponse);
                 };
               break;
      case 'setstatus': 
@@ -153,16 +148,15 @@ self.addEventListener('message', (evt) => {
             } else
             {
               console.log('Set Status: simulator data');
-               simulatorStatus = "ACCC";
-               // console.log('Event:', evt);
-               // console.log ('Event ports', evt.ports);
-                 var statusResponse = {  
-                 uetr : evt.data.details, 
-                 status : simulatorStatus};
-              console.log ("Get Status Response", statusResponse);
-              // var port = evt.ports[0];
-              statusRespond (statusResponse);
-              console.log ('CallBack Done');
+              console.log('Event:', evt);
+              console.log ('Event ports', evt.ports);
+              simulatorStatus = "ACCC";
+              var statusResponse = {  
+                uetr : evt.data.details, 
+                status : simulatorStatus};
+               console.log ("Status Response", statusResponse);
+               var port = evt.ports[0];
+               port.postMessage (statusResponse);
             };
           break;
      default: 
