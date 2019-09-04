@@ -67,22 +67,16 @@ function buildPaymentRequest() {
 
 	let allDisplayItems = [
   	{
- 	   label: 'Subtotal',
+ 	   label: 'Total (excl. taxes)',
  	   amount: {
   	    currency: 'EUR',
-	      value: 50,
-    	},
-  	}, {
- 	   label: 'Discount (10%)',
-  	  amount: {
-      	currency: 'EUR',
-      	value: 5,
+	      value: 1150,
     	},
   	}, {
   	  label: 'VAT (21%)',
 	    amount: {
       	currency: 'EUR',
-      	value: 9.45,
+      	value: 241.50,
     	},
   	},
 	];
@@ -92,7 +86,7 @@ function buildPaymentRequest() {
     		label: 'Total',
     		amount: {
       		currency: 'EUR',
-      		value: 54.45,
+      		value: 1391.50,
     		},
   		},
   		displayItems: allDisplayItems,

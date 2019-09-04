@@ -199,7 +199,8 @@ self.addEventListener('paymentrequest', (evt) => {
              respond('failure', JSON.stringify(err));
           });
       */
-      evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditTransferData.debtorName + '#' + evt.methodData[0].data.creditTransferData.debtorAccount);
+      console.log ('Event data:', evt.methodData[0].data);
+      (evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditTransferData.debtorName + '#' + evt.methodData[0].data.creditTransferData.debtorAccount);
   }));
 });
 
