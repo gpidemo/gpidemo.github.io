@@ -21,14 +21,13 @@
         <p id="checking">Checking whether the payment handler is installed...</p>
 
         <div id="installed" style="display: none;">
-            <p>The payment handler is installed. <a href="../origin-test/">Test it out</a>.</p>
             <p>The payment handler is installed. <a href="../origin-test/checkout.html">Test the W3C demo</a>.</p>
             <ul>
                 <li>Scope: <code id="scope">N/A</code></li>
                 <li>Method: <code id="method">N/A</code></li>
             </ul>
 
-            <input type="file" id="myFile">
+            <input name="Load API File" type="file" id="myFile">
 
             <script>
             
@@ -41,12 +40,12 @@
                 var myFile = this.files[0];
                 var reader = new FileReader();
                 
-                reader.addEventListener('load', function (e) {
-             //     output.textContent = e.target.result;
-                  localStorage.setItem("apikey", e.target.result);
-                  apikey = localStorage.getItem("apikey");
-                  console.log(apikey);
-                });
+                  reader.addEventListener('load', function (e) {
+                    localStorage.setItem("apikey", e.target.result);
+                    localStorage.setItem("apikey_file", myFile);
+                    apikey = localStorage.getItem("apikey");
+                    // console.log(apikey);
+                  });
                 
                 reader.readAsText(myFile);
               }   
