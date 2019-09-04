@@ -57,6 +57,22 @@ div {
   font-weight: bold;
 }
 
+#debtor1Name {
+  font-weight: bold;
+}
+
+#debtor1Account {
+  font-weight: bold;
+}
+
+#debtor2Name {
+  font-weight: bold;
+}
+
+#debtor2Account {
+  font-weight: bold;
+}
+
 #creditorName {
   font-weight: bold;
 }
