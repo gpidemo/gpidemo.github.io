@@ -58,8 +58,8 @@ self.addEventListener('message', (evt) => {
       } else
       {
         console.log('Payment Initiation: simulator data');
+        console.log('methodData.data.uetr:', methodData.data.uetr);
         simulatorStatus = 'INIT';
-        console.log (evt.ports);
         respond('success', methodData.data.uetr);
       };
         break;
@@ -88,7 +88,6 @@ self.addEventListener('message', (evt) => {
                 console.log ("Status Response", statusResponse);
                 var statusPort = evt.ports[0];
                 statusPort.postMessage (statusResponse);
-                console.log ('CallBack Done');
               })
             .catch((err) => {
                  console.log(err);
@@ -99,19 +98,18 @@ self.addEventListener('message', (evt) => {
                 console.log('Get Status: simulator data');
                 // console.log('Event:', evt);
                 // console.log ('Event ports', evt.ports);
-                simulatorStatus = "ACSP";
+                if (simulatorStatus === 'INIT') { simulatorStatus = "ACSP"; };
                 var statusResponse = {  
                     uetr : evt.data.details, 
                   status : simulatorStatus};
                  console.log ("Status Response", statusResponse);
-                 var port = evt.ports[0];
-                 port.postMessage (statusResponse);
+                 var statusPort = evt.ports[0];
+                 statusPort.postMessage (statusResponse);
                 };
               break;
      case 'setstatus': 
         if (!simulator) {
         activeUetr = evt.data.details; 
-        console.log('Active UETR: ', activeUetr)
         fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/' + activeUetr + '/tracker_status?newstatus=ACCC', {
             method: 'POST',
             headers: new Headers({
@@ -138,7 +136,7 @@ self.addEventListener('message', (evt) => {
                   status : 'ACCC' };
                  console.log ("Status Response", statusResponse);
                  evt.ports[0].postMessage (statusResponse);
-                 console.log ('CallBack Done');
+                 // console.log ('CallBack Done');
             
               })
             .catch((err) => {
@@ -148,8 +146,6 @@ self.addEventListener('message', (evt) => {
             } else
             {
               console.log('Set Status: simulator data');
-              console.log('Event:', evt);
-              console.log ('Event ports', evt.ports);
               simulatorStatus = "ACCC";
               var statusResponse = {  
                 uetr : evt.data.details, 
