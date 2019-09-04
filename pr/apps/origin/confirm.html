@@ -13,22 +13,25 @@
 	<body>
 		<div id="container" style="height:1600px">
 			<div class="center">Pay : <span id="value"></span><span id="currency"></span> to <span id="creditorName"></span></div> 
-			<div class="center">      on account <span id="creditorAccount"> from:</span></div> 
+			<div class="center">      on account <span id="creditorAccount"></span> from:</div> 
 			<div style="margin-top: 20px; margin-bottom: 20px;">
 				<div class="horizontal-direction debtor-option" onclick="clickCheckbox(this)">
-					<input type="radio" name="debtor" checked/>
+					
 					<div class="debtor-description">
 						<div class="horizontal-direction debtor-choice">
-							<div>Debtor Name: <span id="debtor1Name"></span> / Id: <span id="debtor1PartyId"></span></div> 
+							<input type="radio" name="debtor" checked/>
+							<div>Debtor Name: <span id="debtor1Name"></span></div>
+							<div>       Customer Id: <span id="debtor1PartyId"></span></div> 
 							<div>       Account: <span id="debtor1Account"></span>/<span id="debtor1BIC"></span></div>
 						</div>
 					</div>
 				</div>
 				<div class="horizontal-direction debtor-option" onclick="clickCheckbox(this)">
-					<input type="radio" name="debtor"/>
 					<div class="debtor-description">
 						<div class="horizontal-direction debtor-choice">
-							<div>Debtor Name: <span id="debtor2Name"></span> / Id: <span id="debtor2PartyId"></div> 
+							<input type="radio" name="debtor"/>
+							<div>Debtor Name: <span id="debtor2Name"></span></div>
+							<div>       Customer Id: <span id="debtor2PartyId"></span></div> 
 							<div>       Account: <span id="debtor2Account"></span>/<span id="debtor2BIC"></span></div>
 						</div>
 					</div>

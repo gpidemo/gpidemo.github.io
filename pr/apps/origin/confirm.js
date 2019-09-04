@@ -50,6 +50,12 @@ console.log ( 'debtor1BIC', document.getElementById('debtor1BIC').innerHTML);
   document.getElementById('debtor2Account').innerHTML = debtorAccountString[1].accountNumber;
   document.getElementById('debtor2PartyId').innerHTML = debtorAccountString[1].accountOwnerId;
   document.getElementById('debtor2BIC').innerHTML = debtorAccountString[1].bankIdentifier;
+
+console.log ( 'debtor2Name', document.getElementById('debtor2Name').innerHTML );
+console.log ( 'debtor2Account', document.getElementById('debtor2Account').innerHTML);
+console.log ( 'debtor2PartyId', document.getElementById('debtor2PartyId').innerHTML);
+console.log ( 'debtor2BIC', document.getElementById('debtor2BIC').innerHTML);
+
 };
 
  completeAccount();
