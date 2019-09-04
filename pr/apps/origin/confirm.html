@@ -7,19 +7,29 @@
 		<link rel="icon" href="/favicon.ico">
 		<link rel="stylesheet" type="text/css" href="../../style.css"> 
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<script src="static_data.js"></script>
 	</head> 
 	
 	<body>
 		<div id="container" style="height:1080px">
 			<h1 class="center">gpi Tracked Payment - Select</h1>
-			<div class="center">Pay following amount: <span id="value"></span><span id="currency"></span> from account 
+			<div class="center">Pay following amount: <span id="value"></span><span id="currency"></span> from account:</div> 
 			<div style="margin-top: 20px; margin-bottom: 20px;">
-				<div class="horizontal-direction debtor-option" onclick="clickChecbox(this)">
+				<div class="horizontal-direction debtor-option" onclick="clickCheckbox(this)">
 					<input type="radio" name="debtor" checked/>
 					<div class="debtor-description">
 						<div class="horizontal-direction debtor-choice">
-							<p>Debtor Name: <span id="debtorName">Alfred Jean-Charles</span> / Id: <span id="debtorPartyID">My ID</span></p> 
-							<p>debtor Account: <span id="debtorAccount">BE25 0056 8328 8588</span> / BIC:  <span id="debtorBIC">GEBABEBB</span></p>
+							<div>Debtor Name: <span id="debtor1Name"> / Id: <span id="debtor1PartyID"></span></div> 
+							<div>debtor Account: <span id="debtor1Account"></span> / BIC:  <span id="debtor1BIC"></span></div>
+						</div>
+					</div>
+				</div>
+				<div class="horizontal-direction debtor-option" onclick="clickChecbox(this)">
+					<input type="radio" name="debtor"/>
+					<div class="debtor-description">
+						<div class="horizontal-direction debtor-choice">
+							<div>Debtor Name: <span id="debtor2Name"></span> / Id: <span id="debtor2PartyID"></div> 
+							<div>Debtor Account: <span id="debtor2Account"></span> BIC: <span id="debtor2BIC"></span></div>
 						</div>
 					</div>
 				</div>
@@ -34,7 +44,7 @@
 		<script src="confirm.js"></script>
 		<script src="static_data.js"></script>
 		<script>
-			function clickChecbox(div) {
+			function clickCheckbox(div) {
 				div.querySelector('input[type="radio"]').checked = true;
 			}
 		</script>
