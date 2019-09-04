@@ -47,6 +47,7 @@ function sendMessage(message) {
         reject(event.data.error);
       } else {
         console.log ('Promise resolve: ', event.data);
+        statusUpdate (event);
         resolve(event.data);
       }
     };
@@ -57,6 +58,16 @@ function sendMessage(message) {
 
 
 
+
+function statusUpdate (evt)  {
+  console.log ('Reply Status event:', evt);
+  document.getElementById('uetr').innerHTML = evt.data.uetr;
+  document.getElementById('status').innerHTML = evt.data.status;
+  gbutton.style.display = 'block';
+  gpleasewait.style.display = 'none';
+  sbutton.style.display = 'block';
+  spleasewait.style.display = 'none';
+};
 
 function statusReply (evt)  {
   if ((evt !== null) && (evt !== undefined)) {
@@ -72,7 +83,6 @@ function statusReply (evt)  {
   sbutton.style.display = 'block';
   spleasewait.style.display = 'none';
 };
-
 
 
 const urlParts = window.location.href.split('#');

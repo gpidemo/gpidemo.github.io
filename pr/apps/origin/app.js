@@ -103,8 +103,9 @@ self.addEventListener('message', (evt) => {
                 console.log('Get Status: simulator data');
                 // console.log('Event:', evt);
                 // console.log ('Event ports', evt.ports);
-                  var statusResponse = {  
-                  uetr : evt.data.details, 
+                simulatorStatus = "ACSP";
+                var statusResponse = {  
+                    uetr : evt.data.details, 
                   status : simulatorStatus};
                  console.log ("Get Status Response", statusResponse);
                  // var port = evt.ports[0];
