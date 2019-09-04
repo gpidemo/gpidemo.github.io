@@ -55,10 +55,6 @@ function sendMessage(message) {
   });
 };
 
-
-
-
-
 function statusUpdate (evt)  {
   console.log ('Reply Status event:', evt);
   document.getElementById('uetr').innerHTML = evt.data.uetr;
