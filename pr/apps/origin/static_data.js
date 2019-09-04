@@ -1,6 +1,6 @@
 // The static data account information should be stored in the browser.
 
-var debitAccount = [{
+var debtorAccountString = [{
       accountOwner: 'Polaris Inc - Treasury',
       accountOwnerId: '213800ND2KZLU8AJEP05',
       accountNumber: 'DE27100777770209299700',
@@ -13,6 +13,7 @@ var debitAccount = [{
       bankIdentifier: 'SWHQBEBB',
 }];
 
+/*
 function redact(input) {
   return {
     accountOwner: input.details.accountOwner,
@@ -21,3 +22,4 @@ function redact(input) {
     bankIdentifier: input.details.bankIdentifier,
   };
 }
+*/
