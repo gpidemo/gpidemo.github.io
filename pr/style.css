@@ -65,11 +65,27 @@ div {
   font-weight: bold;
 }
 
+#debtor1BIC {
+  font-weight: bold;
+}
+
+#debtor1PartyId {
+  font-weight: bold;
+}
+
 #debtor2Name {
   font-weight: bold;
 }
 
 #debtor2Account {
+  font-weight: bold;
+}
+
+#debtor2BIC {
+  font-weight: bold;
+}
+
+#debtor2PartyId {
   font-weight: bold;
 }
 
