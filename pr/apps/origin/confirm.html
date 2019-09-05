@@ -7,49 +7,82 @@
 		<link rel="icon" href="/favicon.ico">
 		<link rel="stylesheet" type="text/css" href="../../style.css"> 
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="confirm.stylesheet.css">
 		<script src="static_data.js"></script>
+  
 	</head> 
 	
 	<body>
+<section>
 		<div id="container" style="height:1600px">
-			<div class="center">Pay : <span id="value"></span><span id="currency"></span> to <span id="creditorName"></span></div> 
-			<div class="center">      on account <span id="creditorAccount"></span> from:</div> 
-			<div style="margin-top: 20px; margin-bottom: 20px;">
-				<div class="horizontal-direction debtor-option" onclick="clickCheckbox(this)">
-					
-					<div class="debtor-description">
-						<div class="horizontal-direction debtor-choice">
-							<input type="radio" name="debtor" checked/>
-							<div>Debtor Name: <span id="debtor1Name"></span></div>
-							<div>       Customer Id: <span id="debtor1PartyId"></span></div> 
-							<div>       Account: <span id="debtor1Account"></span>/<span id="debtor1BIC"></span></div>
+				<h2>gpi Payment - Select Account</h2>
+				<div class="center">Pay : <span id="value"></span><span id="currency"></span> to <span id="creditorName"></span></div> 
+				<div class="center">      on account <span id="creditorAccount"></span> from:</div> 
+				<div style="margin-top: 20px; margin-bottom: 20px;">
+
+<table class="frameworks">
+     <thead>
+         <tr>
+				<th>Account</th>
+				<th>Bank Code</th>
+				<th>Debtor Name</th>
+				<th>Identification</th>
+         </tr>
+     </thead>
+     <tbody>
+     <form>
+         <tr>
+				<td>
+						<div class="radio">
+							<label><input type="radio" id='account1' name="selaccount" checked/> <span id="debtor1Account"></span></label>
 						</div>
-					</div>
-				</div>
-				<div class="horizontal-direction debtor-option" onclick="clickCheckbox(this)">
-					<div class="debtor-description">
-						<div class="horizontal-direction debtor-choice">
-							<input type="radio" name="debtor"/>
-							<div>Debtor Name: <span id="debtor2Name"></span></div>
-							<div>       Customer Id: <span id="debtor2PartyId"></span></div> 
-							<div>       Account: <span id="debtor2Account"></span>/<span id="debtor2BIC"></span></div>
+					</td>
+					<td text-align="center">
+						<div class="radiotext">
+							<label for='account1'><span id="debtor1BIC"></span></label>
 						</div>
-					</div>
+					</td>
+					<td>
+				<div class="radiotext">
+					<label for='account1'><span id="debtor1Name"></span></label>
 				</div>
-			</div>
-			
-			<button class="center" id="confirm" style="cursor: pointer;">Confirm Payment</button>
-			<div id="pleasewait" style="display: none;">Sending payment information to merchant...</div>
-		</div>
-		
+			</td>
+			<td>
+				<div class="radiotext">
+					<label for='account1'><span id="debtor1PartyId"></span></td>
+		</tr>
+		<tr>
+				<td>
+				<div class="radio">
+					<label><input type="radio" id='account2' name="selaccount"/> <span id="debtor2Account"></span></label>
+				</div>
+			</td>
+			<td text-align="center">
+				<div class="radiotext">
+					<label for='account2'><span id="debtor2BIC"></span></label>
+				</div>
+			</td>
+		   <td>
+			   <div class="radiotext">
+				   <label for='account2'><span id="debtor2Name"></span></label>
+			   </div>
+		   </td>
+		   <td>
+			   <div class="radiotext">
+				   <label for='account2'><span id="debtor2PartyId"></span></td>
+				   </div>
+				</tr>
+		</form>
+         </tbody>
+</table>
+<button class="center" id="confirm" style="cursor: pointer;">Confirm Payment</button>
+<div id="pleasewait" style="display: none;">Sending payment information to bank...</div>
+</section>
+
+
 		
 		<script src="/redirect.js"></script> 
 		<script src="confirm.js"></script>
 		<script src="static_data.js"></script>
-		<script>
-			function clickCheckbox(div) {
-				div.querySelector('input[type="radio"]').checked = true;
-			}
-		</script>
 	</body>
 </html> 
