@@ -38,6 +38,7 @@ table, th, td {
 
 .frameworks table {
   width: 100%;
+  font-size: 11px;
 }
 
 .frameworks th {
