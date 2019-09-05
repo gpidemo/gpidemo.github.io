@@ -38,7 +38,6 @@ table, th, td {
 
 .frameworks table {
   width: 100%;
-  font-size: 11px;
 }
 
 .frameworks th {
@@ -46,15 +45,18 @@ table, th, td {
   color: #FFF;
   padding: 3px 10px;
   text-align: center;
+  font-size: 11px;
 }
 
 .frameworks tr {
   text-align: left;
+  font-size: 10px;
 }
 
 .frameworks td {
   background-color: #FFF;
   padding: 3px 10px;
+  font-size: 10px;
 }
 
 #registration-status {
