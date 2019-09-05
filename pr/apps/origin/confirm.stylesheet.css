@@ -1,0 +1,69 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+main {
+  max-width: 350px;
+  border: 1px solid #4CAF50;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px auto;
+}
+
+h1 {
+  color: #4CAF50;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.frameworks {
+  margin: 20px auto;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.frameworks table {
+  width: 100%;
+}
+
+.frameworks th {
+  width: 25%;
+  background-color: #4CAF50;
+  color: #FFF;
+  padding: 3px 10px;
+  text-align: center;
+}
+
+.frameworks tr {
+  width: 25%;
+  text-align: left;
+}
+
+.frameworks td {
+  width: 25%;
+  background-color: #FFF;
+  padding: 3px 10px;
+}
+
+#registration-status {
+  background-color: #FFE454;
+  padding: 10px;
+}
+#bank-backoffice {
+  background-color: #FFC500;
+  padding: 10px;
+}
