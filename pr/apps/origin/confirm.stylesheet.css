@@ -7,11 +7,12 @@
 body {
   margin: 0 auto;
   text-align: center;
-  font-family: sans-serif;
+  font-family: 'Arial Narrow';
+  font-size: 10px; 
 }
 
 main {
-  max-width: 350px;
+  max-width: 600px;
   border: 1px solid #4CAF50;
   padding: 20px;
   border-radius: 5px;
