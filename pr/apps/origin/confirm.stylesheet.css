@@ -41,7 +41,6 @@ table, th, td {
 }
 
 .frameworks th {
-  width: 25%;
   background-color: #4CAF50;
   color: #FFF;
   padding: 3px 10px;
@@ -49,12 +48,10 @@ table, th, td {
 }
 
 .frameworks tr {
-  width: 25%;
   text-align: left;
 }
 
 .frameworks td {
-  width: 25%;
   background-color: #FFF;
   padding: 3px 10px;
 }
