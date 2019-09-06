@@ -7,21 +7,36 @@
     <title>gpi Tracked Payment Status</title>
     <link rel="icon" href="/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../../style.css">
+<style>
+  #bank-backoffice {
+    background-color: #FFC500;
+    padding: 10px;
+  }
+  #uetr {
+    background-color: #FFC500;
+    font-weight: bold;
+  }
+  </style>
 </head>
 
 <body>
     <h1>gpi Tracked Payment Status</h1>
-    <div>Payment submitted: <span id="uetr"></span></div>
+ <section>
+        <div>Payment submitted: <span id="uetr"></span></div>
     <div>Current Status: <span id="status"></span></div>
 
-    <div><button id="setstatus">Set Status</button></div>
-    <div id="spleasewait" style="display: none;">Setting gpi payment status ...</div>
-
-
-    <div><button id="getstatus">Get Status</button></div>
+    <div><button id="getstatus">Check Payment Status</button></div>
     <div id="gpleasewait" style="display: none;">Requesting gpi payment status ...</div>
- 
-    <script src="/redirect.js"></script>
+    <br/>
+    <br/>
+</section> 
+<section id="bank-backoffice">
+ <h2>Bank Back-Office management</h2>
+<div><button id="setstatus">Bank confirms payment has been initiated</button></div>
+<div id="spleasewait" style="display: none;">gpi payment initiated by Bank ...</div>
+</section> 
+
+<script src="/redirect.js"></script>
     <script src="getstatus.js"></script>
 </body>
 
