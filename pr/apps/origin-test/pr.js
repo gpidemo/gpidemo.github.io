@@ -1,3 +1,5 @@
+self.importScripts('../origin/static_data.js');
+
 /* exported onBuyClicked */
 
 /**
@@ -23,14 +25,14 @@ function buildPaymentRequest() {
           supportedNetworks: ['GPI'],
           uetr: initiation_uetr,
           apiKey :  apikeyString,
-          creditTransferData: {
+          creditTransferData: [{
             requested_execution_date: {
               date : "2019-01-02",
             },
             amount: {
               instructed_amount : {
                 currency: "EUR",
-                amount: "1.00",
+                amount: "1391.50",
               }
             },
             debtor: {
@@ -43,25 +45,63 @@ function buildPaymentRequest() {
               bicfi: "KREDBEBB",
             },
             creditor_agent: {
-              bicfi: "CITIGB2L",
+              bicfi: "BNKMBEBB",
             },
             debtor_account: {
               iban: "BE0473244135",
             },
             creditor: {
-              name: "Receiving corp",
+              name: "MerchantA",
               organisation_identification : {
                 lei: "6299300D2N76ADNE4Y55",
               }
             },
             creditor_account: {
-              iban: "BE0473244135",
+              iban: "BE68539007547034",
             },
             remittance_information: 'arn:aws:acm-pca:eu-west-1:522843637103:certificate-authority\/e2a9c0fd-b62e-44a9-bcc2-02e46a1f61c2',
             payment_identification: {
               end_to_end_identification: 'MyInVoice2You',
             },
-          },
+          },{
+            requested_execution_date: {
+              date : "2019-01-02",
+            },
+            amount: {
+              instructed_amount : {
+                currency: "EUR",
+                amount: "1391.50",
+              }
+            },
+            debtor: {
+              name: debtorAccountString[1].accountOwner,
+              organisation_identification: {
+                lei: debtorAccountString[1].accountOwnerId
+              }
+            },
+            debtor_agent: {
+              bicfi: debtorAccountString[1].bankIdentifier,
+            },
+            creditor_agent: {
+              bicfi: "BNKMBEBB",
+            },
+            debtor_account: {
+              iban: debtorAccountString[1].accountNumber,
+            },
+            creditor: {
+              name: "MerchantA",
+              organisation_identification : {
+                lei: "6299300D2N76ADNE4Y55",
+              }
+            },
+            creditor_account: {
+              iban: "BE68539007547034",
+            },
+            remittance_information: 'arn:aws:acm-pca:eu-west-1:522843637103:certificate-authority\/e2a9c0fd-b62e-44a9-bcc2-02e46a1f61c2',
+            payment_identification: {
+              end_to_end_identification: 'MyInVoice2You',
+            },
+          }],
         }, 
     }];
 

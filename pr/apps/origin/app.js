@@ -24,7 +24,7 @@ function respond(statusString, uetrString) {
 
 self.addEventListener('message', (evt) => {
 
-  console.log ('Event: ', evt.data)
+  console.log ('Event Data: ', evt.data)
 
   switch (evt.data.command) {
   case 'confirm': 
@@ -32,7 +32,7 @@ self.addEventListener('message', (evt) => {
     if (self.resolver !== null) {
     fetch('https://u6b176ktza.execute-api.eu-west-1.amazonaws.com/test/glink/payment_initiation', {
         method: 'POST',
-        body: JSON.stringify(methodData.data.creditTransferData),
+        body: JSON.stringify(methodData.data.creditTransferData[evt.data.account]),
         headers: new Headers({
           "Content-Type": "application/json",
           "x-api-key": methodData.data.apiKey,
