@@ -48,19 +48,19 @@ function buildPaymentRequest() {
               }
             },
             debtor: {
-              name: "PayingCorporate",
+              name: debtorAccountData[0].accountOwner,
               organisation_identification: {
-                lei: "5299000J2N45DDNE4Y28"
+                lei: debtorAccountData[0].accountOwnerId
               }
             },
             debtor_agent: {
-              bicfi: "KREDBEBB",
+              bicfi: debtorAccountData[0].bankIdentifier,
             },
             creditor_agent: {
               bicfi: "BNKMBEBB",
             },
             debtor_account: {
-              iban: "BE0473244135",
+              iban: debtorAccountData[0].accountNumber,
             },
             creditor: {
               name: "MerchantA",
@@ -189,7 +189,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
                 instrumentResponse.complete('success')
                     .then(function() {
                        if (instrumentResponse.methodName !== "basic-card") {
-                        basicPopup ('https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr + '#Initiation in process#' + instrumentResponse.details.account);
+                        basicPopup ('https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr + '#Initiation in process#' + instrumentResponse.details.account.iban);
                         console.log(instrumentResponse);
                         done('Payment Request has been processed by gLink with uetr: ' + instrumentResponse.details.uetr, instrumentResponse);
                        } else {
