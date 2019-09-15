@@ -190,7 +190,6 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
                     .then(function() {
                        if (instrumentResponse.methodName !== "basic-card") {
                         basicPopup ('https://gpidemo.github.io/pr/apps/origin/getstatus.html#' + instrumentResponse.details.uetr + '#Initiation in process' + instrumentResponse.details.account);
-                        sendMessage({command : 'getstatus', details : instrumentResponse.details.uetr});
                         console.log(instrumentResponse);
                         done('Payment Request has been processed by gLink with uetr: ' + instrumentResponse.details.uetr, instrumentResponse);
                        } else {

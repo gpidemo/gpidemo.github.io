@@ -49,7 +49,7 @@ self.addEventListener('message', (evt) => {
             console.log('UETR:', jsonResponse.uetr);
             methodData.data.uetr = jsonResponse.uetr;
             console.log('methodData.data.uetr:', methodData.data.uetr);
-            respond('success', jsonResponse.uetr,methodData.data.creditTransferData[evt.data.account].debtor_account);
+            respond('success', jsonResponse.uetr, methodData.data.creditTransferData[evt.data.account].debtor_account);
           })
         .catch((err) => {
              console.log(err);
