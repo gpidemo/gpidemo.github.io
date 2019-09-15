@@ -60,8 +60,8 @@ function statusUpdate (evt)  {
   document.getElementById('uetr').innerHTML = evt.data.uetr;
  
   console.log ('Status--', evt.data.status,'--');
-  if (evt.data.status===ACSP && evt.data.status==='INIT') {
-    document.getElementById('status').innerHTML = "Payment Initiated" 
+  if (evt.data.status=='ACSP' || evt.data.status=='INIT') {
+     document.getElementById('status').innerHTML = "Payment Initiated" 
   }
   else {
      document.getElementById('status').innerHTML = "Debit Confirmed by Bank" 
