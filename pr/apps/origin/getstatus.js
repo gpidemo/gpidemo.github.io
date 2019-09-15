@@ -64,7 +64,8 @@ function statusUpdate (evt)  {
      document.getElementById('status').innerHTML = "Payment Initiated" 
   }
   else {
-     document.getElementById('status').innerHTML = "Debit Confirmed by Bank" 
+     document.getElementById('status').innerHTML = "Debit Confirmed by Bank";
+     document.getElementById('status').style.backgroundColor='#4CAF50'
   }
   gbutton.style.display = 'block';
   gpleasewait.style.display = 'none';
