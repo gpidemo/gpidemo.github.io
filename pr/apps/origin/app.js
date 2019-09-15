@@ -200,7 +200,7 @@ self.addEventListener('paymentrequest', (evt) => {
           });
       */
       console.log ('Event data:', evt.methodData[0].creditTransferData);
-      evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditTransferData.creditor.name + '#' + evt.methodData[0].data.creditTransferData.creditor_account.iban);
+      evt.openWindow('confirm.html#' + evt.total.currency + '#' + evt.total.value + '#' + evt.methodData[0].data.creditTransferData[0].creditor.name + '#' + evt.methodData[0].data.creditTransferData[0].creditor_account.iban);
   }));
 });
 
