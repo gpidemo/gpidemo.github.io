@@ -92,4 +92,5 @@ const urlParts = window.location.href.split('#');
 if (urlParts.length === 3) {
   document.getElementById('uetr').innerHTML = urlParts[1];
   document.getElementById('status').innerHTML = urlParts[2];
+  document.getElementById('account').innerHTML = urlParts[3];
 };

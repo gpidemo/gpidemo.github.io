@@ -9,12 +9,13 @@ self.addEventListener('canmnakepayment', (evt) => {
   evt.respondWith(true);
 });
 
-function respond(statusString, uetrString) {
+function respond(statusString, uetrString, accountString) {
   self.resolver({
     methodName: self.method,
     details: {
       status: statusString,
       uetr: uetrString,
+      account: accountString,
     },
   });
   self.resolver = null;
@@ -48,7 +49,7 @@ self.addEventListener('message', (evt) => {
             console.log('UETR:', jsonResponse.uetr);
             methodData.data.uetr = jsonResponse.uetr;
             console.log('methodData.data.uetr:', methodData.data.uetr);
-            respond('success', jsonResponse.uetr);
+            respond('success', jsonResponse.uetr,methodData.data.creditTransferData[evt.data.account].debtor_account);
           })
         .catch((err) => {
              console.log(err);
