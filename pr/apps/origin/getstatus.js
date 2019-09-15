@@ -95,5 +95,4 @@ if (urlParts.length === 4) {
   document.getElementById('uetr').innerHTML = urlParts[1];
   document.getElementById('status').innerHTML = decodeURI(urlParts[2]);
   document.getElementById('account').innerHTML = urlParts[3];
-  sendMessage({command : 'getstatus', details : document.getElementById('uetr').innerHTML});
 };
