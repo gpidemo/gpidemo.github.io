@@ -1,4 +1,16 @@
-self.importScripts('../origin/static_data.js');
+var debtorAccountData = [{
+  accountOwner: 'Polaris Inc - Treasury',
+  accountOwnerId: '213800ND2KZLU8AJEP05',
+  accountNumber: 'DE27100777770209299700',
+  bankIdentifier: 'SWHQBEBB',
+},
+{
+  accountOwner: 'Polaris Inc - Logistics',
+  accountOwnerId: '213800ND2KZLU8AJEP05',
+  accountNumber: 'BE68844010370034',
+  bankIdentifier: 'SWHQBEBB',
+}];
+
 
 /* exported onBuyClicked */
 
@@ -74,19 +86,19 @@ function buildPaymentRequest() {
               }
             },
             debtor: {
-              name: debtorAccountString[1].accountOwner,
+              name: debtorAccountData[1].accountOwner,
               organisation_identification: {
-                lei: debtorAccountString[1].accountOwnerId
+                lei: debtorAccountData[1].accountOwnerId
               }
             },
             debtor_agent: {
-              bicfi: debtorAccountString[1].bankIdentifier,
+              bicfi: debtorAccountData[1].bankIdentifier,
             },
             creditor_agent: {
               bicfi: "BNKMBEBB",
             },
             debtor_account: {
-              iban: debtorAccountString[1].accountNumber,
+              iban: debtorAccountData[1].accountNumber,
             },
             creditor: {
               name: "MerchantA",
